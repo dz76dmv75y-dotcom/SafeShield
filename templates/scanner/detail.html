@@ -1,0 +1,14 @@
+{% extends 'base.html' %}
+{% block title %}Scan Report{% endblock %}
+{% block content %}
+<div class="card border-0 shadow-lg p-4">
+  <h2 class="mb-3">Detailed scan report</h2>
+  <p><strong>URL:</strong> {{ scan.url }}</p>
+  <p><strong>Risk level:</strong> <span class="badge bg-{{ scan.is_safe|yesno:'success,warning' }}">{{ scan.risk_level }}</span></p>
+  <p><strong>Reputation:</strong> {{ scan.reputation }}</p>
+  <p><strong>SSL:</strong> {{ scan.ssl_status }}</p>
+  <p><strong>Summary:</strong> {{ scan.scan_summary }}</p>
+  <p><strong>Reasons:</strong> {{ scan.reasons }}</p>
+  <a class="btn btn-outline-success" href="{% url 'scanner:scan' %}">Scan Another Website</a>
+</div>
+{% endblock %}

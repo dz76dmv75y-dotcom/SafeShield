@@ -1,0 +1,25 @@
+{% extends 'base.html' %}
+{% block title %}SafeShield Profile{% endblock %}
+{% block content %}
+<div class="row g-4">
+  <div class="col-lg-4">
+    <div class="card border-0 shadow-lg p-4">
+      <h4 class="mb-3">Secure profile</h4>
+      <p><strong>Username:</strong> {{ profile.user.username }}</p>
+      <p><strong>Email:</strong> {{ profile.user.email }}</p>
+      <p><strong>Email verified:</strong> {% if profile.email_verified %}<span class="text-success">Yes</span>{% else %}<span class="text-warning">Pending verification</span>{% endif %}</p>
+      <p><strong>Security Score:</strong> {{ profile.security_score }}/100</p>
+    </div>
+  </div>
+  <div class="col-lg-8">
+    <div class="card border-0 shadow-lg p-4">
+      <h4 class="mb-3">Update profile details</h4>
+      <form method="post">
+        {% csrf_token %}
+        {{ form.as_p }}
+        <button class="btn btn-success" type="submit">Save Changes</button>
+      </form>
+    </div>
+  </div>
+</div>
+{% endblock %}

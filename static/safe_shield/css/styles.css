@@ -1,0 +1,76 @@
+:root {
+  color-scheme: dark;
+}
+body {
+  background: linear-gradient(135deg, #051018 0%, #071b2b 45%, #06253a 100%);
+  min-height: 100vh;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+.rtl {
+  direction: rtl;
+  text-align: right;
+}
+.rtl .ms-2, .rtl .me-2 {
+  margin-left: 0 !important;
+  margin-right: 0.5rem !important;
+}
+.rtl .dropdown-menu {
+  text-align: right;
+}
+.page-shell { min-height: 100vh; }
+
+/* Mobile & tablet responsive tweaks */
+@media (max-width: 991.98px) {
+  .hero { border-radius: 1rem; }
+  .hero .display-5 { font-size: 1.5rem; }
+  .hero-panel { display: none; }
+  .glass-card { padding: 1rem; }
+  .card { padding: 1rem; }
+  .form-control { font-size: 1rem; padding: .6rem .75rem; }
+  .btn { padding: .7rem 1rem; font-size: 1rem; }
+  .btn.w-100 { width: 100%; }
+  .navbar-brand { font-size: 1.05rem; }
+  .navbar-nav .nav-link { padding: .5rem 0.75rem; }
+  .page-shell main.container { padding-left: 1rem; padding-right: 1rem; }
+  .dashboard-card { min-height: 140px; }
+  .stat-box h3 { font-size: 1.3rem; }
+}
+
+@media (max-width: 575.98px) {
+  .hero .display-5 { font-size: 1.25rem; }
+  .feature-card h4 { font-size: 1rem; }
+  .stat-box h3 { font-size: 1.1rem; }
+  .dashboard-card { min-height: 120px; }
+  .navbar .btn { width: 100%; margin-top: .5rem; }
+  .dropdown-menu { width: 100%; }
+  .card.border-0.shadow-lg.p-4 { padding: .9rem; }
+}
+
+/* Improve touch targets and spacing for RTL flows */
+@media (max-width: 991.98px) {
+  body.rtl .navbar-nav { text-align: right; }
+  body.rtl .navbar-nav .nav-link { padding-right: .75rem; padding-left: 0; }
+  body.rtl .btn { text-align: center; }
+}
+
+/* Make charts responsive */
+#securityChart { width: 100% !important; height: auto !important; }
+.navbar-brand { letter-spacing: 0.08em; }
+.hero {
+  background: rgba(5, 16, 24, 0.86);
+  border-radius: 2rem;
+  backdrop-filter: blur(18px);
+}
+.hero-panel { background: radial-gradient(circle at top, rgba(16, 185, 129, 0.16), transparent 65%); }
+.glass-card, .feature-card, .stat-box, .card {
+  background: rgba(8, 20, 32, 0.92);
+  border: 1px solid rgba(255,255,255,0.08);
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.28);
+}
+.progress { height: 0.7rem; background: rgba(255,255,255,0.08); }
+.progress-bar { border-radius: 999px; }
+.table-dark { --bs-table-bg: rgba(6, 12, 20, 0.9); }
+.form-control, .form-select, .btn { border-radius: 0.9rem; }
+.dashboard-card { min-height: 180px; }
+.badge { font-size: 0.82rem; }
+.small-muted { color: rgba(255,255,255,0.65); }

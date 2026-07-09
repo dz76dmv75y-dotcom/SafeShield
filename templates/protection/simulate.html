@@ -1,0 +1,20 @@
+{% extends 'base.html' %}
+{% block title %}Protection Simulation{% endblock %}
+{% block content %}
+<div class="row justify-content-center">
+  <div class="col-lg-6">
+    <div class="card border-0 shadow-lg p-4">
+      <h2 class="mb-3">Simulate a monitored website</h2>
+      <p class="text-secondary">SafeShield can model a warning event for a potentially dangerous website and record it as a protection incident.</p>
+      <form method="post">
+        {% csrf_token %}
+        <div class="mb-3">
+          <label class="form-label">Website URL</label>
+          <input class="form-control" name="url" placeholder="https://fake-bank-login.example" required>
+        </div>
+        <button class="btn btn-danger" type="submit">Record Warning</button>
+      </form>
+    </div>
+  </div>
+</div>
+{% endblock %}

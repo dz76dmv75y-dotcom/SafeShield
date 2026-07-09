@@ -1,0 +1,19 @@
+{% extends 'base.html' %}
+{% load i18n %}
+{% block title %}{% trans "Create SafeShield Account" %}{% endblock %}
+{% block content %}
+<div class="row justify-content-center">
+  <div class="col-lg-6">
+    <div class="card border-0 shadow-lg p-4">
+      <h2 class="mb-3">{% trans "Create your SafeShield account" %}</h2>
+      <p class="text-secondary">{% trans "Protect your digital identity with modern, intelligent cybersecurity controls." %}</p>
+      <form method="post">
+        {% csrf_token %}
+        {{ form.as_p }}
+        <button class="btn btn-success w-100 mt-3" type="submit">{% trans "Create Account" %}</button>
+      </form>
+      <p class="mt-3 text-secondary">{% trans "Already have an account?" %} <a href="{% url 'accounts:login' %}" class="text-success">{% trans "Sign in" %}</a></p>
+    </div>
+  </div>
+</div>
+{% endblock %}

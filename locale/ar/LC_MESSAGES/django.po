@@ -1,0 +1,217 @@
+msgid ""
+msgstr ""
+"Project-Id-Version: SafeShield 1.0\n"
+"Language: ar\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+
+msgid "SafeShield | Cybersecurity Control Center"
+msgstr "SafeShield | مركز تحكم للأمن السيبراني"
+
+msgid "SafeShield"
+msgstr "SafeShield"
+
+msgid "Dashboard"
+msgstr "لوحة التحكم"
+
+msgid "Website Scanner"
+msgstr "ماسح المواقع"
+
+msgid "Account Protection"
+msgstr "حماية الحساب"
+
+msgid "Banking Protection"
+msgstr "حماية الخدمات المصرفية"
+
+msgid "Password Manager"
+msgstr "مدير كلمات المرور"
+
+msgid "Encryption Center"
+msgstr "مركز التشفير"
+
+msgid "Threat Detection"
+msgstr "كشف التهديدات"
+
+msgid "Reports"
+msgstr "التقارير"
+
+msgid "Notifications"
+msgstr "الإشعارات"
+
+msgid "Security Academy"
+msgstr "أكاديمية الأمن"
+
+msgid "Settings"
+msgstr "الإعدادات"
+
+msgid "Profile"
+msgstr "الملف الشخصي"
+
+msgid "Logout"
+msgstr "تسجيل الخروج"
+
+msgid "Features"
+msgstr "الميزات"
+
+msgid "Threat Intelligence"
+msgstr "ذكاء التهديدات"
+
+msgid "Sign In"
+msgstr "تسجيل الدخول"
+
+msgid "Create Free Account"
+msgstr "إنشاء حساب مجاني"
+
+msgid "Explore Platform"
+msgstr "استكشف المنصة"
+
+msgid "AI-driven cybersecurity platform"
+msgstr "منصة أمان سيبراني مدعومة بالذكاء الاصطناعي"
+
+msgid "Secure every digital touchpoint with SafeShield."
+msgstr "احمِ كل نقطة اتصال رقمية باستخدام SafeShield."
+
+msgid "Monitor threats, analyze account exposure, protect websites, and respond to suspicious activity with a professional, modern control center built for modern teams and everyday users."
+msgstr "راقب التهديدات، وحلل تعرض الحساب، وحمِ المواقع، واستجب للنشاط المشبوه عبر مركز تحكم عصري واحترافي مصمم للفرق الحديثة والمستخدمين اليوميين."
+
+msgid "Phishing detection"
+msgstr "كشف التصيد الاحتيالي"
+
+msgid "Dark web monitoring"
+msgstr "مراقبة الشبكة المظلمة"
+
+msgid "Password health scoring"
+msgstr "تقييم صحة كلمات المرور"
+
+msgid "Threat posture snapshot"
+msgstr "لمحة عن وضعية التهديد"
+
+msgid "Security Score"
+msgstr "درجة الأمان"
+
+msgid "Threats Blocked"
+msgstr "التهديدات التي تم حظرها"
+
+msgid "Websites Scanned"
+msgstr "المواقع التي تم مسحها"
+
+msgid "Website Risk Intelligence"
+msgstr "ذكاء مخاطر المواقع"
+
+msgid "Scan URLs, inspect SSL health, analyze reputation, and classify phishing attempts before a user ever clicks."
+msgstr "قم بمسح الروابط، وفحص صحة شهادة SSL، وتحليل السمعة، وتصنيف محاولات التصيد قبل أن ينقر المستخدم على أي شيء."
+
+msgid "Password Vault & Health"
+msgstr "الخزنة الصحية لكلمات المرور"
+
+msgid "Keep credentials protected in an encrypted vault, detect weak or reused passwords, and simplify updates."
+msgstr "احفظ الاعتمادات في خزنة مشفرة، واكتشف كلمات المرور الضعيفة أو المعادة، وسهّل التحديثات."
+
+msgid "Live Threat Response"
+msgstr "الاستجابة المباشرة للتهديدات"
+
+msgid "Log suspicious events, generate incident reports, and recommend immediate defensive actions in real time."
+msgstr "سجّل الأحداث المشبوهة، وأنشئ تقارير للحوادث، وقدم توصيات دفاعية فورية في الوقت الحقيقي."
+
+msgid "Built-in threat intelligence"
+msgstr "ذكاء تهديدات مدمج"
+
+msgid "SafeShield combines phishing analysis, account monitoring, dark web breach checks, and behavioral signals into a single trusted security view."
+msgstr "يجمع SafeShield بين تحليل التصيد، ومراقبة الحسابات، وفحوصات اختراق الشبكة المظلمة، والإشارات السلوكية في عرض أمان موثوق واحد."
+
+msgid "Real-time warnings"
+msgstr "تنبيهات فورية"
+
+msgid "Receive instant alerts for risky websites, unusual sign-in patterns, and suspicious account activity."
+msgstr "تلقّى تنبيهات فورية حول المواقع الخطرة، وأنماط تسجيل الدخول غير المعتادة، والنشاط المشبوه في الحساب."
+
+msgid "Actionable reports"
+msgstr "تقارير قابلة للتنفيذ"
+
+msgid "Export weekly and monthly reports with security health summaries and clear recommendations."
+msgstr "صدّر تقارير أسبوعية وشهرية مع ملخصات لحالة الأمان وتوصيات واضحة."
+
+msgid "Create SafeShield Account"
+msgstr "إنشاء حساب SafeShield"
+
+msgid "Create your SafeShield account"
+msgstr "أنشئ حساب SafeShield الخاص بك"
+
+msgid "Protect your digital identity with modern, intelligent cybersecurity controls."
+msgstr "احمِ هويتك الرقمية عبر أدوات أمان سيبراني حديثة وذكية."
+
+msgid "Create Account"
+msgstr "إنشاء الحساب"
+
+msgid "Already have an account?"
+msgstr "هل لديك حساب بالفعل؟"
+
+msgid "Sign in"
+msgstr "تسجيل الدخول"
+
+msgid "SafeShield Login"
+msgstr "تسجيل الدخول إلى SafeShield"
+
+msgid "Welcome back"
+msgstr "مرحبًا بعودتك"
+
+msgid "Sign in to your SecureShield control center."
+msgstr "سجل الدخول إلى مركز التحكم الخاص بك في SecureShield."
+
+msgid "Forgot your password?"
+msgstr "هل نسيت كلمة المرور؟"
+
+msgid "Need an account?"
+msgstr "هل تحتاج إلى حساب؟"
+
+msgid "Create one"
+msgstr "أنشئ واحدًا"
+
+msgid "Cybersecurity Operations Center"
+msgstr "مركز عمليات الأمن السيبراني"
+
+msgid "A live overview of your protection posture, digital identity health, and emerging risks."
+msgstr "نظرة مباشرة على وضع الحماية، وصحة الهوية الرقمية، والمخاطر الناشئة."
+
+msgid "Overall security score"
+msgstr "الدرجة الإجمالية للأمان"
+
+msgid "Device Protection"
+msgstr "حماية الجهاز"
+
+msgid "Website Protection"
+msgstr "حماية الموقع"
+
+msgid "Password Health"
+msgstr "صحة كلمات المرور"
+
+msgid "Monthly security trends"
+msgstr "اتجاهات الأمان الشهرية"
+
+msgid "Security recommendations"
+msgstr "توصيات الأمان"
+
+msgid "Recent activities"
+msgstr "الأنشطة الأخيرة"
+
+msgid "Latest notifications"
+msgstr "آخر الإشعارات"
+
+msgid "Account created. Check your inbox for the verification link."
+msgstr "تم إنشاء الحساب. راجع بريدك الوارد للحصول على رابط التحقق."
+
+msgid "Signed in successfully."
+msgstr "تم تسجيل الدخول بنجاح."
+
+msgid "You have been logged out."
+msgstr "تم تسجيل الخروج."
+
+msgid "Email verified successfully. You can now sign in."
+msgstr "تم التحقق من البريد الإلكتروني بنجاح. يمكنك تسجيل الدخول الآن."
+
+msgid "Profile updated successfully."
+msgstr "تم تحديث الملف الشخصي بنجاح."
+
+msgid "Username or Email"
+msgstr "اسم المستخدم أو البريد الإلكتروني"

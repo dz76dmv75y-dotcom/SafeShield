@@ -1,0 +1,41 @@
+{% extends 'base.html' %}
+{% block title %}Threat Detection{% endblock %}
+{% block content %}
+<div class="row g-4">
+  <div class="col-lg-7">
+    <div class="card border-0 shadow-lg p-4">
+      <h2 class="mb-3">AI threat detection</h2>
+      <p class="text-secondary">SafeShield analyzes suspicious behavior, phishing patterns, and unusual account activity to classify threats and recommend defensive action.</p>
+      <ul class="list-unstyled">
+        {% for alert in alerts %}
+          <li class="border-bottom border-secondary-subtle py-3">
+            <h5 class="text-success">{{ alert.title }}</h5>
+            <p class="text-secondary mb-1">{{ alert.summary }}</p>
+            <small class="text-secondary">Severity: {{ alert.severity }} · Source: {{ alert.source }}</small>
+          </li>
+        {% endfor %}
+      </ul>
+    </div>
+  </div>
+  <div class="col-lg-5">
+    <div class="card border-0 shadow-lg p-4">
+      <h4 class="mb-3">Recent security events</h4>
+      <ul class="list-unstyled text-secondary">
+        {% for event in events %}
+          <li class="border-bottom border-secondary-subtle py-2">{{ event.title }} — {{ event.details }}</li>
+        {% empty %}
+          <li>No events recorded.</li>
+        {% endfor %}
+      </ul>
+      <h4 class="mt-4 mb-3">Recent scans</h4>
+      <ul class="list-unstyled text-secondary">
+        {% for scan in scans %}
+          <li class="border-bottom border-secondary-subtle py-2">{{ scan.url }} <span class="badge bg-secondary ms-2">{{ scan.risk_level }}</span></li>
+        {% empty %}
+          <li>No recent scans.</li>
+        {% endfor %}
+      </ul>
+    </div>
+  </div>
+</div>
+{% endblock %}

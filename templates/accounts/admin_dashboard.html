@@ -1,0 +1,41 @@
+{% extends 'base.html' %}
+{% block title %}Admin Security Dashboard{% endblock %}
+{% block content %}
+<div class="row g-4">
+  <div class="col-lg-4">
+    <div class="card border-0 shadow-lg p-4">
+      <h3 class="mb-3">Administrator overview</h3>
+      <p class="text-secondary">Monitor users, permissions, suspicious sign-ins, and application/errors without leaving the SafeShield security console.</p>
+      <ul class="text-secondary">
+        <li>Total users: {{ users }}</li>
+        <li>Staff users: {{ staff_users }}</li>
+        <li>Failed login events: {{ failed_login_count }}</li>
+      </ul>
+    </div>
+  </div>
+  <div class="col-lg-8">
+    <div class="card border-0 shadow-lg p-4">
+      <h4 class="mb-3">Recent security logs</h4>
+      <ul class="list-unstyled text-secondary">
+        {% for log in security_logs %}
+          <li class="border-bottom border-secondary-subtle py-2"><strong>{{ log.title }}</strong> — {{ log.details }} <small class="d-block">{{ log.created_at|date:'M d, Y H:i' }} · {{ log.severity }}</small></li>
+        {% empty %}
+          <li>No security logs yet.</li>
+        {% endfor %}
+      </ul>
+    </div>
+  </div>
+  <div class="col-12">
+    <div class="card border-0 shadow-lg p-4">
+      <h4 class="mb-3">Recent application errors</h4>
+      <ul class="list-unstyled text-secondary">
+        {% for error in error_logs %}
+          <li class="border-bottom border-secondary-subtle py-2"><strong>{{ error.message }}</strong> <small class="d-block">{{ error.created_at|date:'M d, Y H:i' }} · {{ error.path }}</small></li>
+        {% empty %}
+          <li>No application errors recorded yet.</li>
+        {% endfor %}
+      </ul>
+    </div>
+  </div>
+</div>
+{% endblock %}

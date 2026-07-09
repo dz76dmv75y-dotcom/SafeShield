@@ -1,0 +1,84 @@
+{% extends 'base.html' %}
+{% block title %}Banking Protection{% endblock %}
+{% block content %}
+<div class="row g-4">
+  <div class="col-lg-7">
+    <div class="card border-0 shadow-lg p-4">
+      <h2 class="mb-3">Banking protection center</h2>
+      <p class="text-secondary">Check suspicious banking URLs, receive phishing warnings, and review recommendations that help safeguard financial accounts without ever storing banking credentials.</p>
+      <form method="post">
+        {% csrf_token %}
+        <div class="mb-3">
+          <label class="form-label">Check a banking-related URL</label>
+          <input class="form-control" name="url" placeholder="https://yourbank.example.com/signin" required>
+        </div>
+        <button class="btn btn-success" type="submit">Assess URL</button>
+      </form>
+
+      {% if analysis %}
+        <div class="alert alert-{% if analysis.is_suspicious %}warning{% else %}success{% endif %} mt-4">
+          <h5 class="mb-2">Assessment result</h5>
+          <div><strong>Risk level:</strong> {{ analysis.risk_level }}</div>
+          <div><strong>Score:</strong> {{ analysis.score }}/100</div>
+          <div><strong>Recommendation:</strong> {{ analysis.recommendation }}</div>
+          <ul class="mt-2 mb-0">
+            {% for reason in analysis.reasons %}
+              <li>{{ reason }}</li>
+            {% endfor %}
+          </ul>
+        </div>
+      {% endif %}
+    </div>
+  </div>
+  <div class="col-lg-5">
+    <div class="card border-0 shadow-lg p-4">
+      <h4 class="mb-3">Security recommendations</h4>
+      <ul class="text-secondary">
+        {% for recommendation in recommendations %}
+          <li class="mb-2">{{ recommendation }}</li>
+        {% endfor %}
+      </ul>
+    </div>
+    <div class="card border-0 shadow-lg p-4 mt-4">
+      <h4 class="mb-3">Recent banking alerts</h4>
+      <ul class="list-unstyled text-secondary">
+        {% for event in recent_events %}
+          <li class="border-bottom border-secondary-subtle py-2">{{ event.title }} — {{ event.details }}</li>
+        {% empty %}
+          <li>No banking alerts yet.</li>
+        {% endfor %}
+      </ul>
+    </div>
+  </div>
+</div>
+
+<div class="card border-0 shadow-lg p-4 mt-4">
+  <h3 class="mb-3">Banking fraud awareness</h3>
+  <div class="row g-3">
+    <div class="col-md-6">
+      <div class="feature-card p-4 rounded-4 h-100">
+        <h5 class="text-success">Phishing sites</h5>
+        <p class="text-secondary mb-0">Scammers imitate banks with fake login pages and urgent messages that pressure users to act quickly.</p>
+      </div>
+    </div>
+    <div class="col-md-6">
+      <div class="feature-card p-4 rounded-4 h-100">
+        <h5 class="text-success">Account takeover attempts</h5>
+        <p class="text-secondary mb-0">Suspicious login behavior, password reset events, and unauthorized access attempts should be reported immediately.</p>
+      </div>
+    </div>
+    <div class="col-md-6">
+      <div class="feature-card p-4 rounded-4 h-100">
+        <h5 class="text-success">Fake banking alerts</h5>
+        <p class="text-secondary mb-0">Fraudsters often send messages that look like official banking alerts and ask users to click links or verify account information.</p>
+      </div>
+    </div>
+    <div class="col-md-6">
+      <div class="feature-card p-4 rounded-4 h-100">
+        <h5 class="text-success">How to stay safe</h5>
+        <p class="text-secondary mb-0">Use a trusted banking app, verify the domain manually, and enable MFA wherever your bank offers it.</p>
+      </div>
+    </div>
+  </div>
+</div>
+{% endblock %}

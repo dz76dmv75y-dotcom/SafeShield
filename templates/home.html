@@ -1,0 +1,88 @@
+{% extends 'base.html' %}
+{% load i18n %}
+{% block title %}{% trans "SafeShield | Protect Your Digital Identity" %}{% endblock %}
+
+{% block content %}
+<div class="hero card border-0 shadow-lg overflow-hidden">
+  <div class="row g-0 align-items-center">
+    <div class="col-lg-7 p-5">
+      <span class="badge bg-success-subtle text-success mb-3">{% trans "AI-driven cybersecurity platform" %}</span>
+      <h1 class="display-5 fw-bold mb-3">{% trans "Secure every digital touchpoint with SafeShield." %}</h1>
+      <p class="lead text-secondary">{% trans "Monitor threats, analyze account exposure, protect websites, and respond to suspicious activity with a professional, modern control center built for modern teams and everyday users." %}</p>
+      <div class="d-flex gap-3 flex-wrap mt-4">
+        <a class="btn btn-success px-4 py-2" href="{% url 'accounts:register' %}">{% trans "Create Free Account" %}</a>
+        <a class="btn btn-outline-light px-4 py-2" href="{% url 'accounts:login' %}">{% trans "Explore Platform" %}</a>
+      </div>
+      <div class="mt-4 d-flex gap-4 flex-wrap text-secondary small">
+        <span><i class="bi bi-check-circle-fill text-success"></i> {% trans "Phishing detection" %}</span>
+        <span><i class="bi bi-check-circle-fill text-success"></i> {% trans "Dark web monitoring" %}</span>
+        <span><i class="bi bi-check-circle-fill text-success"></i> {% trans "Password health scoring" %}</span>
+      </div>
+    </div>
+    <div class="col-lg-5 p-5 hero-panel">
+      <div class="glass-card p-4 rounded-4">
+        <h5 class="fw-semibold mb-3"><i class="bi bi-shield-lock me-2 text-success"></i>{% trans "Threat posture snapshot" %}</h5>
+        <div class="mb-3">
+          <div class="d-flex justify-content-between mb-1"><span>{% trans "Security Score" %}</span><strong>94/100</strong></div>
+          <div class="progress"><div class="progress-bar bg-success" style="width: 94%"></div></div>
+        </div>
+        <div class="row g-3 mt-2">
+          <div class="col-6">
+            <div class="stat-box p-3 rounded-3"><h6>{% trans "Threats Blocked" %}</h6><h3 class="text-success">1,284</h3></div>
+          </div>
+          <div class="col-6">
+            <div class="stat-box p-3 rounded-3"><h6>{% trans "Websites Scanned" %}</h6><h3 class="text-info">68</h3></div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<section id="features" class="mt-5">
+  <div class="row g-4">
+    <div class="col-md-4">
+      <div class="feature-card p-4 rounded-4 h-100">
+        <i class="bi bi-globe2 fs-3 text-success"></i>
+        <h4 class="mt-3">{% trans "Website Risk Intelligence" %}</h4>
+        <p class="text-secondary">{% trans "Scan URLs, inspect SSL health, analyze reputation, and classify phishing attempts before a user ever clicks." %}</p>
+      </div>
+    </div>
+    <div class="col-md-4">
+      <div class="feature-card p-4 rounded-4 h-100">
+        <i class="bi bi-key fs-3 text-success"></i>
+        <h4 class="mt-3">{% trans "Password Vault & Health" %}</h4>
+        <p class="text-secondary">{% trans "Keep credentials protected in an encrypted vault, detect weak or reused passwords, and simplify updates." %}</p>
+      </div>
+    </div>
+    <div class="col-md-4">
+      <div class="feature-card p-4 rounded-4 h-100">
+        <i class="bi bi-activity fs-3 text-success"></i>
+        <h4 class="mt-3">{% trans "Live Threat Response" %}</h4>
+        <p class="text-secondary">{% trans "Log suspicious events, generate incident reports, and recommend immediate defensive actions in real time." %}</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="insights" class="mt-5">
+  <div class="card border-0 shadow-lg p-4">
+    <h3 class="mb-3">{% trans "Built-in threat intelligence" %}</h3>
+    <p class="text-secondary">{% trans "SafeShield combines phishing analysis, account monitoring, dark web breach checks, and behavioral signals into a single trusted security view." %}</p>
+    <div class="row g-4 mt-2">
+      <div class="col-md-6">
+        <div class="p-3 rounded-3 border border-secondary-subtle">
+          <h5 class="text-success">{% trans "Real-time warnings" %}</h5>
+          <p class="text-secondary mb-0">{% trans "Receive instant alerts for risky websites, unusual sign-in patterns, and suspicious account activity." %}</p>
+        </div>
+      </div>
+      <div class="col-md-6">
+        <div class="p-3 rounded-3 border border-secondary-subtle">
+          <h5 class="text-success">{% trans "Actionable reports" %}</h5>
+          <p class="text-secondary mb-0">{% trans "Export weekly and monthly reports with security health summaries and clear recommendations." %}</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+{% endblock %}

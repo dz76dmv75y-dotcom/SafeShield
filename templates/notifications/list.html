@@ -1,0 +1,18 @@
+{% extends 'base.html' %}
+{% block title %}Notification Center{% endblock %}
+{% block content %}
+<div class="card border-0 shadow-lg p-4">
+  <h2 class="mb-3">Notification Center</h2>
+  <ul class="list-unstyled text-secondary">
+    {% for item in items %}
+      <li class="border-bottom border-secondary-subtle py-3">
+        <h5 class="text-success">{{ item.title }}</h5>
+        <p class="mb-1">{{ item.body }}</p>
+        <small>{{ item.created_at|date:'M d, Y H:i' }} · {{ item.category }}</small>
+      </li>
+    {% empty %}
+      <li>No notifications yet.</li>
+    {% endfor %}
+  </ul>
+</div>
+{% endblock %}
