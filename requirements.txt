@@ -2,3 +2,5 @@ django==6.0.7
 reportlab==4.2.0
 cryptography==45.0.0
 argon2-cffi==25.1.0
+
+gunicorn
