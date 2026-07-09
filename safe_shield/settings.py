@@ -25,11 +25,8 @@ SECRET_KEY = 'django-insecure-!n89pzk!4iz2-i3hdm4q&y$b*^%fsye2nhu^!^ybv0k8q@p_h4
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = False
 
-ALLOWED_HOSTS = [
-    "127.0.0.1",
-    "localhost",
-    "192.168.1.164",
-]
+ALLOWED_HOSTS = ['safeshield-v1db.onrender.com']
+
 SECURE_BROWSER_XSS_FILTER = True
 SECURE_CONTENT_TYPE_NOSNIFF = True
 X_FRAME_OPTIONS = 'DENY'
