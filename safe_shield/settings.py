@@ -25,7 +25,8 @@ SECRET_KEY = os.getenv(
     "django-insecure-change-this-key"
 )
 
-DEBUG = os.getenv("DEBUG", "False").lower() == "true"
+# مؤقتًا لمعرفة سبب خطأ 500
+DEBUG = True
 
 
 ALLOWED_HOSTS = [
