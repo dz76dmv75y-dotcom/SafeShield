@@ -1,0 +1,57 @@
+{% extends "base.html" %}
+
+{% block content %}
+
+<div class="container mt-5">
+
+    <div class="card shadow p-4">
+
+        <h2>
+            🌐 SafeShield Link Scanner
+        </h2>
+
+        <p>
+            Check if a website link is suspicious.
+        </p>
+
+
+        <form method="POST">
+
+            {% csrf_token %}
+
+            <input 
+            type="text"
+            name="url"
+            class="form-control"
+            placeholder="Enter website URL">
+
+            <button 
+            class="btn btn-success mt-3">
+                🔍 Scan
+            </button>
+
+        </form>
+
+
+        {% if result %}
+
+        <div class="alert alert-info mt-4">
+
+            <h5>
+                Status: {{ result.status }}
+            </h5>
+
+            <p>
+                {{ result.message }}
+            </p>
+
+        </div>
+
+        {% endif %}
+
+
+    </div>
+
+</div>
+
+{% endblock %}

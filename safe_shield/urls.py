@@ -34,8 +34,13 @@ def set_language_view(request):
     response.set_cookie('django_language', language, max_age=60 * 60 * 24 * 365, path='/')
     return response
 
+from django.urls import include
 
 urlpatterns = [
+   path(
+    "banking/",
+    include(("banking.urls", "banking"), namespace="banking")
+),
     path('i18n/setlang/', set_language_view, name='set_language'),
     path('i18n/', include('django.conf.urls.i18n')),
 ]

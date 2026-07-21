@@ -1,76 +1,932 @@
-:root {
-  color-scheme: dark;
-}
 body {
-  background: linear-gradient(135deg, #051018 0%, #071b2b 45%, #06253a 100%);
-  min-height: 100vh;
-  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-}
-.rtl {
-  direction: rtl;
-  text-align: right;
-}
-.rtl .ms-2, .rtl .me-2 {
-  margin-left: 0 !important;
-  margin-right: 0.5rem !important;
-}
-.rtl .dropdown-menu {
-  text-align: right;
-}
-.page-shell { min-height: 100vh; }
-
-/* Mobile & tablet responsive tweaks */
-@media (max-width: 991.98px) {
-  .hero { border-radius: 1rem; }
-  .hero .display-5 { font-size: 1.5rem; }
-  .hero-panel { display: none; }
-  .glass-card { padding: 1rem; }
-  .card { padding: 1rem; }
-  .form-control { font-size: 1rem; padding: .6rem .75rem; }
-  .btn { padding: .7rem 1rem; font-size: 1rem; }
-  .btn.w-100 { width: 100%; }
-  .navbar-brand { font-size: 1.05rem; }
-  .navbar-nav .nav-link { padding: .5rem 0.75rem; }
-  .page-shell main.container { padding-left: 1rem; padding-right: 1rem; }
-  .dashboard-card { min-height: 140px; }
-  .stat-box h3 { font-size: 1.3rem; }
+    background:
+        radial-gradient(circle at top right, #12345a 0%, transparent 40%),
+        linear-gradient(135deg, #050B1D, #07162D, #0A1835);
+    color: white;
+    font-family: "Cairo", sans-serif;
+    min-height: 100vh;
 }
 
-@media (max-width: 575.98px) {
-  .hero .display-5 { font-size: 1.25rem; }
-  .feature-card h4 { font-size: 1rem; }
-  .stat-box h3 { font-size: 1.1rem; }
-  .dashboard-card { min-height: 120px; }
-  .navbar .btn { width: 100%; margin-top: .5rem; }
-  .dropdown-menu { width: 100%; }
-  .card.border-0.shadow-lg.p-4 { padding: .9rem; }
+
+/* Dashboard */
+
+.scp-dashboard {
+    padding: 20px;
 }
 
-/* Improve touch targets and spacing for RTL flows */
-@media (max-width: 991.98px) {
-  body.rtl .navbar-nav { text-align: right; }
-  body.rtl .navbar-nav .nav-link { padding-right: .75rem; padding-left: 0; }
-  body.rtl .btn { text-align: center; }
+
+/* Hero */
+
+.scp-hero {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background: rgba(12,28,56,0.88);
+    backdrop-filter: blur(18px);
+    border: 1px solid rgba(255,255,255,0.08);
+    border-radius: 24px;
+    padding: 50px;
+    box-shadow: 0 0 40px rgba(0,170,255,0.25);
 }
 
-/* Make charts responsive */
-#securityChart { width: 100% !important; height: auto !important; }
-.navbar-brand { letter-spacing: 0.08em; }
-.hero {
-  background: rgba(5, 16, 24, 0.86);
-  border-radius: 2rem;
-  backdrop-filter: blur(18px);
+
+.hero-text {
+    max-width: 600px;
 }
-.hero-panel { background: radial-gradient(circle at top, rgba(16, 185, 129, 0.16), transparent 65%); }
-.glass-card, .feature-card, .stat-box, .card {
-  background: rgba(8, 20, 32, 0.92);
-  border: 1px solid rgba(255,255,255,0.08);
-  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.28);
+
+
+.hero-text h1 {
+    font-size: 48px;
+    font-weight: 800;
+    color: #ffffff;
 }
-.progress { height: 0.7rem; background: rgba(255,255,255,0.08); }
-.progress-bar { border-radius: 999px; }
-.table-dark { --bs-table-bg: rgba(6, 12, 20, 0.9); }
-.form-control, .form-select, .btn { border-radius: 0.9rem; }
-.dashboard-card { min-height: 180px; }
-.badge { font-size: 0.82rem; }
-.small-muted { color: rgba(255,255,255,0.65); }
+
+
+.hero-text h2 {
+    color: #00B8FF;
+    font-size: 32px;
+}
+
+
+.hero-text p {
+    color: #B8C4D9;
+    font-size: 18px;
+    line-height: 1.8;
+}
+
+
+/* Shield */
+
+.hero-shield {
+
+    width: 260px;
+    height: 300px;
+
+    background:
+    linear-gradient(145deg,#10294A,#061426);
+
+    border: 5px solid #1DA1FF;
+
+    border-radius:
+    50% 50% 45% 45%;
+
+    display:flex;
+    flex-direction:column;
+    justify-content:center;
+    align-items:center;
+
+    box-shadow:
+    0 0 40px #00B8FF,
+    inset 0 0 30px rgba(0,184,255,.5);
+
+    animation: floatShield 4s infinite ease-in-out;
+}
+
+
+.hero-shield span {
+
+    font-size:45px;
+    font-weight:bold;
+    color:white;
+
+}
+
+
+.shield-glow {
+
+    font-size:80px;
+    filter:
+    drop-shadow(0 0 20px #00B8FF);
+
+}
+
+
+@keyframes floatShield {
+
+    50% {
+        transform:translateY(-15px);
+    }
+
+}
+
+
+
+/* Buttons */
+
+
+.scp-btn,
+.scp-btn-outline {
+
+    display:inline-block;
+    padding:14px 30px;
+    border-radius:18px;
+    margin:10px 5px;
+    text-decoration:none;
+    transition:.3s;
+}
+
+
+.scp-btn {
+
+    background:
+    linear-gradient(135deg,#1DA1FF,#0066CC);
+
+    color:white;
+
+    box-shadow:
+    0 0 20px rgba(0,184,255,.5);
+
+}
+
+
+.scp-btn:hover {
+
+    transform:translateY(-3px);
+
+}
+
+
+.scp-btn-outline {
+
+    border:1px solid #1DA1FF;
+    color:white;
+
+}
+
+
+
+/* Cards */
+
+
+.status-card,
+.scp-card,
+.feature-box {
+
+    background:
+    rgba(20,45,80,.9);
+
+    backdrop-filter:
+    blur(15px);
+
+    border:
+    1px solid rgba(255,255,255,.1);
+
+    border-radius:24px;
+
+    box-shadow:
+    0 0 25px rgba(0,170,255,.15);
+
+}
+
+
+
+.status-card {
+
+    margin-top:30px;
+    padding:25px;
+    display:flex;
+    gap:20px;
+    align-items:center;
+
+}
+
+
+.status-icon {
+
+    background:#18D87E;
+    color:white;
+    width:55px;
+    height:55px;
+    border-radius:50%;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    font-size:30px;
+
+}
+
+
+
+.section-title {
+
+    margin-top:40px;
+    color:#00B8FF;
+
+}
+
+
+
+.scp-cards,
+.scp-features {
+
+    display:grid;
+    grid-template-columns:
+    repeat(auto-fit,minmax(220px,1fr));
+
+    gap:20px;
+
+}
+
+
+.scp-card,
+.feature-box {
+
+    padding:30px;
+    text-align:center;
+    color:white;
+    text-decoration:none;
+
+    transition:.3s;
+
+}
+
+
+.scp-card:hover,
+.feature-box:hover {
+
+    transform:translateY(-8px);
+
+    box-shadow:
+    0 0 35px rgba(0,184,255,.35);
+
+}
+
+
+.feature-box p,
+.scp-card p {
+
+    color:#B8C4D9;
+
+}
+
+
+
+/* Mobile */
+
+@media(max-width:768px){
+
+    .scp-hero {
+
+        flex-direction:column;
+        text-align:center;
+
+    }
+
+
+    .hero-text h1 {
+
+        font-size:34px;
+
+    }
+
+
+    .hero-shield {
+
+        margin-top:30px;
+        width:210px;
+        height:240px;
+
+    }
+
+}
+/* ===== SCP Dark Premium Fix ===== */
+
+html, body {
+    background: #050B1D !important;
+    color: #ffffff !important;
+}
+
+
+.page-shell {
+    background:
+        radial-gradient(circle at 80% 20%, rgba(0,184,255,0.18), transparent 35%),
+        linear-gradient(135deg,#050B1D,#07162D,#0A1835) !important;
+    min-height:100vh;
+}
+
+
+/* Hero */
+
+.scp-hero {
+    background: rgba(8,21,36,0.95) !important;
+}
+
+
+.hero-text h1 {
+    color:#ffffff !important;
+}
+
+
+.hero-text h2 {
+    color:#39AFFF !important;
+}
+
+
+.hero-text p {
+    color:#D5E3F5 !important;
+}
+
+
+
+/* Cards */
+
+.status-card,
+.scp-card,
+.feature-box {
+
+    background:
+    linear-gradient(
+        145deg,
+        rgba(16,41,74,.95),
+        rgba(8,21,36,.95)
+    ) !important;
+
+    color:white !important;
+
+}
+
+
+.scp-card h4,
+.feature-box h4,
+.status-card h3 {
+
+    color:white !important;
+
+}
+
+
+.scp-card p,
+.feature-box p {
+
+    color:#C8D6EA !important;
+
+}
+
+
+
+/* Navbar */
+
+.navbar {
+
+    background:#050B1D !important;
+
+}
+
+
+.nav-link {
+
+    color:#D5E3F5 !important;
+
+}
+
+
+.nav-link:hover {
+
+    color:#00B8FF !important;
+
+}
+
+
+/* Make buttons clearer */
+
+.scp-btn {
+
+    color:white !important;
+
+}
+
+
+.scp-btn-outline {
+
+    color:white !important;
+
+}
+/* ===== SCP Futuristic Background ===== */
+
+.page-shell {
+
+    position: relative;
+    overflow: hidden;
+
+}
+
+
+.page-shell::before {
+
+    content:"";
+
+    position:absolute;
+
+    inset:0;
+
+    background-image:
+
+    radial-gradient(circle,
+    rgba(0,184,255,0.35) 1px,
+    transparent 1px);
+
+    background-size:
+    45px 45px;
+
+    opacity:.25;
+
+    animation:
+    particlesMove 20s linear infinite;
+
+    pointer-events:none;
+
+}
+
+
+
+.page-shell::after {
+
+    content:"";
+
+    position:absolute;
+
+    width:700px;
+    height:700px;
+
+    right:-250px;
+    top:100px;
+
+
+    background:
+
+    radial-gradient(
+    circle,
+    rgba(0,184,255,.25),
+    transparent 65%
+    );
+
+
+    filter:blur(30px);
+
+    pointer-events:none;
+
+}
+
+
+
+
+@keyframes particlesMove {
+
+    from {
+
+        transform:translateY(0);
+
+    }
+
+
+    to {
+
+        transform:translateY(-80px);
+
+    }
+
+}
+
+
+
+
+/* Radar Effect Behind Shield */
+
+
+.hero-shield {
+
+    position:relative;
+
+}
+
+
+.hero-shield::before {
+
+
+    content:"";
+
+
+    position:absolute;
+
+
+    width:380px;
+
+    height:380px;
+
+
+    border-radius:50%;
+
+
+    border:
+    1px solid rgba(0,184,255,.35);
+
+
+    box-shadow:
+
+    0 0 40px rgba(0,184,255,.3);
+
+
+    animation:
+    radarRotate 10s linear infinite;
+
+
+    z-index:-1;
+
+}
+
+
+
+
+.hero-shield::after {
+
+
+    content:"";
+
+
+    position:absolute;
+
+
+    width:450px;
+
+    height:450px;
+
+
+    border-radius:50%;
+
+
+    border:
+    1px dashed rgba(39,224,215,.25);
+
+
+    animation:
+    radarRotate 15s linear infinite reverse;
+
+
+    z-index:-1;
+
+}
+
+
+
+
+@keyframes radarRotate {
+
+
+    from {
+
+        transform:rotate(0deg);
+
+    }
+
+
+    to {
+
+        transform:rotate(360deg);
+
+    }
+
+}
+/* =========================
+   Mobile Responsive Design
+========================= */
+
+@media (max-width: 991px) {
+
+    .cyber-navbar {
+        padding: 12px 0;
+    }
+
+    .navbar-brand {
+        max-width: 75%;
+    }
+
+    .scp-title {
+        font-size: 18px;
+    }
+
+    .scp-subtitle {
+        font-size: 10px;
+    }
+
+    .navbar-collapse {
+        margin-top: 15px;
+        padding: 15px;
+        border-radius: 18px;
+        background: rgba(10, 20, 30, 0.95);
+    }
+
+    .navbar-nav {
+        gap: 8px;
+    }
+
+    .nav-item {
+        width: 100%;
+    }
+
+    .cyber-link {
+        display: block;
+        padding: 10px 15px !important;
+        border-radius: 10px;
+    }
+
+    .cyber-link:hover {
+        background: rgba(255, 255, 255, 0.08);
+    }
+
+    .scp-btn {
+        display: block;
+        width: 100%;
+        margin: 5px 0 !important;
+        text-align: center;
+    }
+
+    .dropdown {
+        margin-top: 10px;
+    }
+
+    .dropdown-menu {
+        width: 100%;
+    }
+
+}
+/* =========================================
+   SafeShield - Final Mobile Responsive
+========================================= */
+
+@media (max-width: 991px) {
+
+    /* Page */
+    .page-shell {
+        width: 100%;
+        overflow-x: hidden;
+    }
+
+    main.container {
+        padding-left: 15px !important;
+        padding-right: 15px !important;
+    }
+
+
+    /* =========================
+       Navbar
+    ========================= */
+
+    .cyber-navbar {
+        padding: 10px 0;
+    }
+
+    .navbar-brand {
+        max-width: 75%;
+        overflow: hidden;
+    }
+
+    .scp-logo {
+        flex-shrink: 0;
+    }
+
+    .scp-title {
+        font-size: 18px;
+    }
+
+    .scp-subtitle {
+        font-size: 9px;
+        white-space: nowrap;
+    }
+
+    .navbar-toggler {
+        border: 1px solid rgba(0, 184, 255, 0.5);
+        padding: 7px 10px;
+    }
+
+    .navbar-toggler:focus {
+        box-shadow: 0 0 10px rgba(0, 184, 255, 0.4);
+    }
+
+    .navbar-collapse {
+        margin-top: 15px;
+        padding: 15px;
+        border-radius: 18px;
+        background: rgba(5, 11, 29, 0.97);
+        border: 1px solid rgba(0, 184, 255, 0.15);
+        box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+    }
+
+    .navbar-nav {
+        gap: 5px;
+        width: 100%;
+    }
+
+    .nav-item {
+        width: 100%;
+    }
+
+    .cyber-link {
+        display: block;
+        width: 100%;
+        padding: 11px 15px !important;
+        border-radius: 10px;
+    }
+
+    .cyber-link:hover {
+        background: rgba(0, 184, 255, 0.08);
+    }
+
+    .navbar .scp-btn {
+        display: block;
+        width: 100%;
+        margin: 5px 0 !important;
+        text-align: center;
+    }
+
+    .dropdown {
+        margin-top: 8px;
+    }
+
+    .dropdown-menu {
+        width: 100%;
+    }
+
+
+    /* =========================
+       Security Dashboard
+    ========================= */
+
+    .scp-dashboard {
+        padding: 5px 0;
+    }
+
+
+    /* Hero */
+
+    .scp-hero {
+        flex-direction: column;
+        text-align: center;
+        padding: 30px 20px;
+        gap: 30px;
+        overflow: hidden;
+    }
+
+    .hero-text {
+        max-width: 100%;
+    }
+
+    .hero-text h1 {
+        font-size: 30px;
+        line-height: 1.4;
+    }
+
+    .hero-text h2 {
+        font-size: 23px;
+        margin-top: 10px;
+    }
+
+    .hero-text p {
+        font-size: 15px;
+        line-height: 1.8;
+    }
+
+
+    /* Buttons */
+
+    .scp-hero .scp-btn,
+    .scp-hero .scp-btn-outline {
+        display: block;
+        width: 100%;
+        margin: 10px 0;
+        padding: 13px 20px;
+    }
+
+
+    /* Shield */
+
+    .hero-shield {
+        width: 190px;
+        height: 220px;
+        margin: 10px auto 20px;
+    }
+
+    .hero-shield::before {
+        width: 280px;
+        height: 280px;
+    }
+
+    .hero-shield::after {
+        width: 330px;
+        height: 330px;
+    }
+
+    .shield-glow {
+        font-size: 60px;
+    }
+
+
+    /* Status */
+
+    .status-card {
+        flex-direction: column;
+        text-align: center;
+        padding: 20px;
+    }
+
+
+    /* Section Title */
+
+    .section-title {
+        font-size: 24px;
+        text-align: center;
+        margin-top: 30px;
+    }
+
+
+    /* Cards */
+
+    .scp-cards,
+    .scp-features {
+        grid-template-columns: 1fr;
+        gap: 15px;
+    }
+
+    .scp-card,
+    .feature-box {
+        padding: 22px 18px;
+    }
+
+
+    /* Security Score */
+
+    .security-score-card {
+        padding: 20px !important;
+    }
+
+
+    /* Progress */
+
+    .progress {
+        height: 12px !important;
+    }
+
+
+    /* My Accounts */
+
+    .account-card {
+        width: 100%;
+    }
+
+
+    /* Tables */
+
+    .scp-logs {
+        width: 100%;
+        overflow-x: auto;
+    }
+
+    .scp-logs table {
+        min-width: 550px;
+    }
+
+}
+
+
+/* =========================================
+   Small Phones
+========================================= */
+
+@media (max-width: 576px) {
+
+    .hero-text h1 {
+        font-size: 25px;
+    }
+
+    .hero-text h2 {
+        font-size: 20px;
+    }
+
+    .hero-text p {
+        font-size: 14px;
+    }
+
+    .hero-shield {
+        width: 160px;
+        height: 190px;
+    }
+
+    .hero-shield::before {
+        width: 230px;
+        height: 230px;
+    }
+
+    .hero-shield::after {
+        width: 270px;
+        height: 270px;
+    }
+
+    .section-title {
+        font-size: 21px;
+    }
+
+    .scp-card,
+    .feature-box {
+        border-radius: 18px;
+    }
+
+}

@@ -11,10 +11,13 @@ https://docs.djangoproject.com/en/6.0/ref/settings/
 """
 
 from pathlib import Path
+from dotenv import load_dotenv
+import os
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
 
+load_dotenv(BASE_DIR / ".env")
 
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/6.0/howto/deployment/checklist/
@@ -59,6 +62,7 @@ INSTALLED_APPS = [
     'academy',
     'notifications',
     'settings',
+    'banking',
 ]
 
 MIDDLEWARE = [
@@ -161,9 +165,20 @@ AUTHENTICATION_BACKENDS = ['accounts.auth_backends.EmailOrUsernameBackend']
 LOGIN_URL = 'accounts:login'
 LOGIN_REDIRECT_URL = 'dashboard:home'
 LOGOUT_REDIRECT_URL = 'home'
-
-EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
 DEFAULT_FROM_EMAIL = 'noreply@safeshield.local'
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 STATIC_ROOT = BASE_DIR / 'staticfiles'
+EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
+
+EMAIL_HOST = 'smtp.gmail.com'
+EMAIL_PORT = 587
+EMAIL_USE_TLS = True
+
+EMAIL_HOST_USER = 'ضع_بريد_SCP_هنا'
+EMAIL_HOST_PASSWORD = 'ضع_App_Password_هنا'
+
+DEFAULT_FROM_EMAIL = 'SCP - Smart Cyber Protection <ضع_بريد_SCP_هنا>'
+RESEND_API_KEY = os.getenv("RESEND_API_KEY")
+
+DEFAULT_FROM_EMAIL = "SCP - Smart Cyber Protection <safeshield.project@gmail.com>"

@@ -1,0 +1,714 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block content %}
+
+<div class="scp-dashboard">
+
+    <!-- HERO -->
+    <section class="scp-hero">
+
+        <div class="hero-text">
+
+            <h1>
+                🛡️ Smart Cyber Protection
+            </h1>
+
+            <h2>
+                مركز التحكم الأمني
+            </h2>
+
+            <p>
+                حماية الحسابات والبيانات الرقمية،
+                اكتشاف التهديدات السيبرانية،
+                وتأمين حياتك الرقمية بذكاء.
+            </p>
+
+            <a href="{% url 'accounts:start-security-scan' %}"
+               class="scp-btn">
+                🚀 بدء الفحص الأمني
+            </a>
+
+            <a href="{% url 'accounts:download-security-report' %}"
+               class="scp-btn-outline">
+                📄 تحميل التقرير
+            </a>
+
+        </div>
+
+        <div class="hero-shield">
+            <div class="shield-logo">
+                SCP
+            </div>
+        </div>
+
+    </section>
+
+
+    <!-- STATUS -->
+    <div class="scp-status">
+
+        <h3>
+            🟢 جهازك محمي
+        </h3>
+
+        <p>
+            آخر تسجيل دخول:
+            {{ last_login_at }}
+        </p>
+
+    </div>
+
+
+    <!-- SECURITY SCORE -->
+    <div class="card shadow-lg border-0 rounded-4 mb-4">
+
+        <div class="card-body text-center p-4">
+
+            <h3 class="fw-bold mb-3">
+                🛡️ Security Score
+            </h3>
+
+            <div class="display-3 fw-bold text-success">
+                {{ security_score }}%
+            </div>
+
+            <p class="text-muted mb-3">
+                مستوى حماية حسابك الحالي
+            </p>
+
+            <div class="progress" style="height: 12px;">
+
+          <div
+    class="progress-bar bg-success"
+    role="progressbar"
+    style="--security-score: {{ security_score }}%; width: var(--security-score);"
+    aria-valuenow="{{ security_score }}"
+    aria-valuemin="0"
+    aria-valuemax="100">
+</div>
+
+            </div>
+
+
+            {% if security_score >= 80 %}
+
+                <div class="alert alert-success mt-4 mb-0">
+                    🟢 مستوى الأمان ممتاز.
+                </div>
+
+            {% elif security_score >= 50 %}
+
+                <div class="alert alert-warning mt-4 mb-0">
+                    🟡 مستوى الأمان يحتاج إلى تحسين.
+                </div>
+
+            {% else %}
+
+                <div class="alert alert-danger mt-4 mb-0">
+                    🔴 حسابك يحتاج إلى تحسينات أمنية فورية.
+                </div>
+
+            {% endif %}
+
+        </div>
+
+    </div>
+
+
+    <!-- MY ACCOUNTS -->
+    <div class="card shadow-lg border-0 rounded-4 mb-4">
+
+        <div class="card-body p-4">
+
+            <div class="d-flex justify-content-between align-items-center mb-4">
+
+                <div>
+
+                    <h3 class="fw-bold mb-1">
+                        🔐 حساباتي
+                    </h3>
+
+                    <p class="text-muted mb-0">
+                        إدارة ومراقبة حساباتك الرقمية
+                    </p>
+
+                </div>
+
+                <button
+                    class="btn btn-success rounded-pill"
+                    data-bs-toggle="modal"
+                    data-bs-target="#addAccountModal">
+
+                    + إضافة حساب
+
+                </button>
+
+            </div>
+
+
+            <div class="row g-3">
+
+
+                <!-- Snapchat -->
+                <div class="col-md-6 col-lg-4">
+
+                    <div class="border rounded-4 p-3 h-100">
+
+                        <div class="d-flex align-items-center gap-3">
+
+                            <div class="fs-2">
+                                👻
+                            </div>
+
+                            <div>
+
+                                <h5 class="fw-bold mb-1">
+                                    Snapchat
+                                </h5>
+
+                                <span class="badge bg-success">
+                                    محمي
+                                </span>
+
+                            </div>
+
+                        </div>
+
+                    </div>
+
+                </div>
+
+
+                <!-- Instagram -->
+                <div class="col-md-6 col-lg-4">
+
+                    <div class="border rounded-4 p-3 h-100">
+
+                        <div class="d-flex align-items-center gap-3">
+
+                            <div class="fs-2">
+                                📸
+                            </div>
+
+                            <div>
+
+                                <h5 class="fw-bold mb-1">
+                                    Instagram
+                                </h5>
+
+                                <span class="badge bg-success">
+                                    محمي
+                                </span>
+
+                            </div>
+
+                        </div>
+
+                    </div>
+
+                </div>
+
+
+                <!-- TikTok -->
+                <div class="col-md-6 col-lg-4">
+
+                    <div class="border rounded-4 p-3 h-100">
+
+                        <div class="d-flex align-items-center gap-3">
+
+                            <div class="fs-2">
+                                🎵
+                            </div>
+
+                            <div>
+
+                                <h5 class="fw-bold mb-1">
+                                    TikTok
+                                </h5>
+
+                                <span class="badge bg-warning text-dark">
+                                    يحتاج إلى مراجعة
+                                </span>
+
+                            </div>
+
+                        </div>
+
+                    </div>
+
+                </div>
+
+
+                <!-- Gmail -->
+                <div class="col-md-6 col-lg-4">
+
+                    <div class="border rounded-4 p-3 h-100">
+
+                        <div class="d-flex align-items-center gap-3">
+
+                            <div class="fs-2">
+                                ✉️
+                            </div>
+
+                            <div>
+
+                                <h5 class="fw-bold mb-1">
+                                    Gmail
+                                </h5>
+
+                                <span class="badge bg-success">
+                                    محمي
+                                </span>
+
+                            </div>
+
+                        </div>
+
+                    </div>
+
+                </div>
+
+
+                <!-- iCloud -->
+                <div class="col-md-6 col-lg-4">
+
+                    <div class="border rounded-4 p-3 h-100">
+
+                        <div class="d-flex align-items-center gap-3">
+
+                            <div class="fs-2">
+                                ☁️
+                            </div>
+
+                            <div>
+
+                                <h5 class="fw-bold mb-1">
+                                    iCloud
+                                </h5>
+
+                                <span class="badge bg-success">
+                                    محمي
+                                </span>
+
+                            </div>
+
+                        </div>
+
+                    </div>
+
+                </div>
+
+
+                <!-- Bank -->
+                <div class="col-md-6 col-lg-4">
+
+                    <div class="border rounded-4 p-3 h-100">
+
+                        <div class="d-flex align-items-center gap-3">
+
+                            <div class="fs-2">
+                                🏦
+                            </div>
+
+                            <div>
+
+                                <h5 class="fw-bold mb-1">
+                                    الحساب البنكي
+                                </h5>
+
+                                <span class="badge bg-success">
+                                    محمي
+                                </span>
+
+                            </div>
+
+                        </div>
+
+                    </div>
+
+                </div>
+
+
+            </div>
+
+        </div>
+
+    </div>
+
+
+    <!-- FEATURES -->
+
+    <h2 class="section-title">
+        الخدمات الأمنية
+    </h2>
+
+
+    <div class="feature-grid">
+
+
+        <!-- Banking -->
+
+        <div class="scp-card">
+
+            <i>🏦</i>
+
+            <h3>
+                حماية البنك
+            </h3>
+
+            <p>
+                حماية الحسابات البنكية ومراقبة الأنشطة المشبوهة.
+            </p>
+
+            <a href="{% url 'banking:home' %}">
+                فتح
+            </a>
+
+        </div>
+
+
+        <!-- Accounts -->
+
+        <div class="scp-card">
+
+            <i>🔐</i>
+
+            <h3>
+                حماية الحسابات
+            </h3>
+
+            <p>
+                تأمين الحساب ومراقبة عمليات الدخول.
+            </p>
+
+            <a href="{% url 'accounts:profile' %}">
+                فتح
+            </a>
+
+        </div>
+
+
+        <!-- Link Scanner -->
+
+        <div class="scp-card">
+
+            <i>🌐</i>
+
+            <h3>
+                فحص الروابط
+            </h3>
+
+            <p>
+                تحليل الروابط واكتشاف التصيد الإلكتروني.
+            </p>
+
+            <a href="{% url 'accounts:link-scanner' %}">
+                فتح
+            </a>
+
+        </div>
+
+
+        <!-- Encryption -->
+
+        <div class="scp-card">
+
+            <i>🔒</i>
+
+            <h3>
+                مركز التشفير
+            </h3>
+
+            <p>
+                تشفير وحماية الملفات والبيانات.
+            </p>
+
+            <a href="{% url 'encryption:home' %}">
+                فتح
+            </a>
+
+        </div>
+
+
+        <!-- Password Manager -->
+
+        <div class="scp-card">
+
+            <i>🔑</i>
+
+            <h3>
+                مدير كلمات المرور
+            </h3>
+
+            <p>
+                إدارة كلمات المرور بشكل آمن.
+            </p>
+
+            <a href="{% url 'passwords:list' %}">
+                فتح
+            </a>
+
+        </div>
+
+
+        <!-- Security Report -->
+
+        <div class="scp-card">
+
+            <i>📄</i>
+
+            <h3>
+                التقرير الأمني
+            </h3>
+
+            <p>
+                عرض حالة الحماية والسجلات الأمنية.
+            </p>
+
+            <a href="{% url 'accounts:security-report' %}">
+                فتح
+            </a>
+
+        </div>
+
+
+        <!-- Full Scan -->
+
+        <div class="scp-card">
+
+            <i>🛡️</i>
+
+            <h3>
+                الفحص الكامل
+            </h3>
+
+            <p>
+                تشغيل تحليل شامل للحماية الأمنية.
+            </p>
+
+            <a href="{% url 'accounts:start-security-scan' %}">
+                بدء
+            </a>
+
+        </div>
+
+
+        <!-- Profile -->
+
+        <div class="scp-card">
+
+            <i>👤</i>
+
+            <h3>
+                الملف الشخصي
+            </h3>
+
+            <p>
+                إدارة معلومات الحساب الشخصية.
+            </p>
+
+            <a href="{% url 'accounts:profile' %}">
+                فتح
+            </a>
+
+        </div>
+
+
+        <!-- Settings -->
+
+        <div class="scp-card">
+
+            <i>⚙️</i>
+
+            <h3>
+                الإعدادات
+            </h3>
+
+            <p>
+                تخصيص إعدادات التطبيق.
+            </p>
+
+            <a href="{% url 'settings:preferences' %}">
+                فتح
+            </a>
+
+        </div>
+
+
+    </div>
+
+
+    <!-- SECURITY LOGS -->
+
+    <div class="scp-logs">
+
+        <h2>
+            آخر الأحداث الأمنية
+        </h2>
+
+
+        <table>
+
+            <tr>
+
+                <th>
+                    الحدث
+                </th>
+
+                <th>
+                    الخطورة
+                </th>
+
+                <th>
+                    التاريخ
+                </th>
+
+            </tr>
+
+
+            {% for log in security_logs %}
+
+            <tr>
+
+                <td>
+                    {{ log.title }}
+                </td>
+
+                <td>
+                    {{ log.severity }}
+                </td>
+
+                <td>
+                    {{ log.created_at }}
+                </td>
+
+            </tr>
+
+
+            {% empty %}
+
+            <tr>
+
+                <td colspan="3">
+                    لا توجد أحداث أمنية
+                </td>
+
+            </tr>
+
+            {% endfor %}
+
+
+        </table>
+
+    </div>
+
+
+</div>
+
+
+<!-- ADD ACCOUNT MODAL -->
+
+<div class="modal fade"
+     id="addAccountModal"
+     tabindex="-1">
+
+    <div class="modal-dialog">
+
+        <div class="modal-content">
+
+            <div class="modal-header">
+
+                <h5 class="modal-title">
+                    🔐 إضافة حساب
+                </h5>
+
+                <button
+                    type="button"
+                    class="btn-close"
+                    data-bs-dismiss="modal">
+                </button>
+
+            </div>
+
+
+            <div class="modal-body">
+
+                <form>
+
+                    <div class="mb-3">
+
+                        <label class="form-label">
+                            نوع الحساب
+                        </label>
+
+                        <select class="form-select">
+
+                            <option>
+                                Snapchat
+                            </option>
+
+                            <option>
+                                Instagram
+                            </option>
+
+                            <option>
+                                TikTok
+                            </option>
+
+                            <option>
+                                Gmail
+                            </option>
+
+                            <option>
+                                iCloud
+                            </option>
+
+                            <option>
+                                Bank Account
+                            </option>
+
+                        </select>
+
+                    </div>
+
+
+                    <div class="mb-3">
+
+                        <label class="form-label">
+                            اسم المستخدم أو البريد الإلكتروني
+                        </label>
+
+                        <input
+                            type="text"
+                            class="form-control"
+                            placeholder="أدخل بيانات الحساب">
+
+                    </div>
+
+
+                    <button
+                        type="button"
+                        class="btn btn-success w-100"
+                        data-bs-dismiss="modal">
+
+                        إضافة الحساب
+
+                    </button>
+
+                </form>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</div>
+<style>
+    .security-progress {
+        width: 0%;
+    }
+</style>
+
+{% endblock %}

@@ -11,47 +11,223 @@
   </head>
   <body class="bg-dark text-light {% if LANGUAGE_CODE == 'ar' %}rtl{% endif %}">
     <div class="page-shell">
-      <nav class="navbar navbar-expand-lg navbar-dark bg-black border-bottom border-secondary">
-        <div class="container">
-          <a class="navbar-brand fw-bold text-success" href="{% url 'home' %}"><i class="bi bi-shield-shaded me-2"></i>{% trans "SafeShield" %}</a>
-          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
-            <span class="navbar-toggler-icon"></span>
-          </button>
-          <div class="collapse navbar-collapse" id="navbarNav">
-            <ul class="navbar-nav ms-auto align-items-lg-center">
-              {% if user.is_authenticated %}
-                <li class="nav-item"><a class="nav-link" href="{% url 'dashboard:home' %}">{% trans "Dashboard" %}</a></li>
-                <li class="nav-item"><a class="nav-link" href="{% url 'scanner:scan' %}">{% trans "Website Scanner" %}</a></li>
-                <li class="nav-item"><a class="nav-link" href="{% url 'protection:accounts' %}">{% trans "Account Protection" %}</a></li>
-                <li class="nav-item"><a class="nav-link" href="{% url 'protection:banking' %}">{% trans "Banking Protection" %}</a></li>
-                <li class="nav-item"><a class="nav-link" href="{% url 'passwords:list' %}">{% trans "Password Manager" %}</a></li>
-                <li class="nav-item"><a class="nav-link" href="{% url 'encryption:home' %}">{% trans "Encryption Center" %}</a></li>
-                <li class="nav-item"><a class="nav-link" href="{% url 'threats:home' %}">{% trans "Threat Detection" %}</a></li>
-                <li class="nav-item"><a class="nav-link" href="{% url 'reports:home' %}">{% trans "Reports" %}</a></li>
-                <li class="nav-item"><a class="nav-link" href="{% url 'notifications:list' %}">{% trans "Notifications" %}</a></li>
-                <li class="nav-item"><a class="nav-link" href="{% url 'academy:home' %}">{% trans "Security Academy" %}</a></li>
-                <li class="nav-item"><a class="nav-link" href="{% url 'settings:preferences' %}">{% trans "Settings" %}</a></li>
-                <li class="nav-item"><a class="nav-link" href="{% url 'accounts:profile' %}">{% trans "Profile" %}</a></li>
-                <li class="nav-item"><a class="btn btn-outline-success ms-2" href="{% url 'accounts:logout' %}">{% trans "Logout" %}</a></li>
-              {% else %}
-                <li class="nav-item"><a class="nav-link" href="#features">{% trans "Features" %}</a></li>
-                <li class="nav-item"><a class="nav-link" href="#insights">{% trans "Threat Intelligence" %}</a></li>
-                <li class="nav-item"><a class="btn btn-success ms-2" href="{% url 'accounts:login' %}">{% trans "Sign In" %}</a></li>
-              {% endif %}
-              <li class="nav-item dropdown">
-                <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-                  {% if LANGUAGE_CODE == 'ar' %}العربية{% else %}English{% endif %}
-                </a>
-                <ul class="dropdown-menu dropdown-menu-dark {% if LANGUAGE_CODE == 'ar' %}dropdown-menu-end{% endif %}">
-                  <li><form action="{% url 'set_language' %}" method="post" class="d-inline">{% csrf_token %}<input name="next" type="hidden" value="{{ request.get_full_path }}" /><button class="dropdown-item" type="submit" name="language" value="en">English</button></form></li>
-                  <li><form action="{% url 'set_language' %}" method="post" class="d-inline">{% csrf_token %}<input name="next" type="hidden" value="{{ request.get_full_path }}" /><button class="dropdown-item" type="submit" name="language" value="ar">العربية</button></form></li>
-                </ul>
-              </li>
-            </ul>
-          </div>
-        </div>
-      </nav>
+      <nav class="navbar navbar-expand-lg cyber-navbar">
 
+    <div class="container">
+
+        <!-- Logo -->
+        <a class="navbar-brand d-flex align-items-center"
+           href="{% url 'home' %}">
+
+            <div class="scp-logo">
+                🛡️
+            </div>
+
+            <div class="ms-2">
+                <h5 class="mb-0 scp-title">
+                    SCP
+                </h5>
+
+                <small class="scp-subtitle">
+                    Smart Cyber Protection
+                </small>
+            </div>
+
+        </a>
+
+
+        <!-- Mobile Button -->
+        <button class="navbar-toggler"
+                type="button"
+                data-bs-toggle="collapse"
+                data-bs-target="#navbarNav">
+
+            <span class="navbar-toggler-icon"></span>
+
+        </button>
+
+
+        <div class="collapse navbar-collapse"
+             id="navbarNav">
+
+
+            <ul class="navbar-nav ms-auto align-items-lg-center">
+
+
+            {% if user.is_authenticated %}
+
+
+                <li class="nav-item">
+                    <a class="nav-link cyber-link"
+                       href="{% url 'dashboard:home' %}">
+                        🏠 Dashboard
+                    </a>
+                </li>
+
+
+                <li class="nav-item">
+                    <a class="nav-link cyber-link"
+                       href="{% url 'accounts:security-dashboard' %}">
+                        🛡 Security Center
+                    </a>
+                </li>
+
+
+                <li class="nav-item">
+                    <a class="nav-link cyber-link"
+                       href="{% url 'scanner:scan' %}">
+                        🌐 Scanner
+                    </a>
+                </li>
+
+
+                <li class="nav-item">
+                    <a class="nav-link cyber-link"
+                       href="{% url 'reports:home' %}">
+                        📄 Reports
+                    </a>
+                </li>
+
+
+                <li class="nav-item">
+                    <a class="nav-link cyber-link"
+                       href="{% url 'notifications:list' %}">
+                        🔔 Alerts
+                    </a>
+                </li>
+
+
+               {% if user.is_authenticated and user.is_superuser %}
+
+<li class="nav-item">
+    <a class="nav-link text-warning"
+       href="{% url 'accounts:admin-dashboard' %}">
+        👑 Admin
+    </a>
+</li>
+
+{% endif %}
+
+                <li class="nav-item">
+
+                    <a class="btn scp-btn ms-2"
+                       href="{% url 'accounts:profile' %}">
+                        👤 Profile
+                    </a>
+
+                </li>
+
+
+                <li class="nav-item">
+
+                    <a class="btn scp-btn ms-2"
+                       href="{% url 'accounts:logout' %}">
+                        Logout
+                    </a>
+
+                </li>
+
+
+
+            {% else %}
+
+
+                <li class="nav-item">
+
+                    <a class="btn scp-btn"
+                       href="{% url 'accounts:login' %}">
+                        Sign In
+                    </a>
+
+                </li>
+
+
+            {% endif %}
+
+
+
+            <!-- Language -->
+
+            <li class="nav-item dropdown ms-2">
+
+                <a class="nav-link dropdown-toggle cyber-link"
+                   href="#"
+                   role="button"
+                   data-bs-toggle="dropdown">
+
+                    {% if LANGUAGE_CODE == 'ar' %}
+                        العربية
+                    {% else %}
+                        English
+                    {% endif %}
+
+                </a>
+
+
+                <ul class="dropdown-menu dropdown-menu-dark">
+
+                    <li>
+
+                        <form action="{% url 'set_language' %}"
+                              method="post">
+
+                            {% csrf_token %}
+
+                            <input type="hidden"
+                                   name="next"
+                                   value="{{ request.get_full_path }}">
+
+                            <button class="dropdown-item"
+                                    name="language"
+                                    value="ar">
+
+                                العربية
+
+                            </button>
+
+                        </form>
+
+                    </li>
+
+
+                    <li>
+
+                        <form action="{% url 'set_language' %}"
+                              method="post">
+
+                            {% csrf_token %}
+
+                            <input type="hidden"
+                                   name="next"
+                                   value="{{ request.get_full_path }}">
+
+                            <button class="dropdown-item"
+                                    name="language"
+                                    value="en">
+
+                                English
+
+                            </button>
+
+                        </form>
+
+                    </li>
+
+
+                </ul>
+
+
+            </li>
+
+
+            </ul>
+
+
+        </div>
+
+    </div>
+
+</nav>
       <main class="container py-4">
         {% if messages %}
           {% for message in messages %}
