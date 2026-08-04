@@ -2,3 +2,6 @@ Django
 gunicorn
 whitenoise
 python-dotenv
+reportlab
+resend
+cryptography
