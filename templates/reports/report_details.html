@@ -1,0 +1,190 @@
+{% extends "base.html" %}
+{% load i18n %}
+
+{% block title %}
+{% trans "Report Details" %} | SafeShield Protection
+{% endblock %}
+
+{% block content %}
+
+<div class="container py-5">
+
+
+    <div class="card shadow-lg border-0 rounded-4">
+
+
+        <div class="card-header bg-dark text-white">
+
+            <h2 class="mb-0">
+                📄 {% trans "Security Report Details" %}
+            </h2>
+
+        </div>
+
+
+
+        <div class="card-body">
+
+
+            <div class="row g-4">
+
+
+                <div class="col-md-6">
+
+                    <div class="card border-0 shadow-sm rounded-4">
+
+                        <div class="card-body">
+
+                            <h5>
+                                📌 {% trans "Report Information" %}
+                            </h5>
+
+
+                            <hr>
+
+
+                            <p>
+                                <strong>
+                                    {% trans "Report Name:" %}
+                                </strong>
+
+                                Website Security Scan
+                            </p>
+
+
+                            <p>
+                                <strong>
+                                    {% trans "Date:" %}
+                                </strong>
+
+                                2026-08-04
+                            </p>
+
+
+                            <p>
+                                <strong>
+                                    {% trans "Scan Type:" %}
+                                </strong>
+
+                                Website Protection
+                            </p>
+
+
+                        </div>
+
+                    </div>
+
+                </div>
+
+
+
+
+                <div class="col-md-6">
+
+                    <div class="card border-0 shadow-sm rounded-4">
+
+                        <div class="card-body text-center">
+
+
+                            <h5>
+                                🛡️ {% trans "Security Result" %}
+                            </h5>
+
+
+                            <div class="display-4 text-success fw-bold">
+                                95%
+                            </div>
+
+
+                            <span class="badge bg-success fs-6">
+
+                                {% trans "Excellent" %}
+
+                            </span>
+
+
+                        </div>
+
+                    </div>
+
+                </div>
+
+
+
+            </div>
+
+
+
+
+
+            <div class="card mt-4 border-0 shadow-sm rounded-4">
+
+
+                <div class="card-header bg-primary text-white">
+
+                    <h5 class="mb-0">
+                        🔍 {% trans "Scan Results" %}
+                    </h5>
+
+                </div>
+
+
+
+                <div class="card-body">
+
+
+                    <ul class="list-group list-group-flush">
+
+
+                        <li class="list-group-item">
+                            ✅ {% trans "No malware detected." %}
+                        </li>
+
+
+                        <li class="list-group-item">
+                            ✅ {% trans "No phishing attempts found." %}
+                        </li>
+
+
+                        <li class="list-group-item">
+                            ✅ {% trans "No suspicious activity detected." %}
+                        </li>
+
+
+                        <li class="list-group-item">
+                            ✅ {% trans "Account security level is high." %}
+                        </li>
+
+
+                    </ul>
+
+
+                </div>
+
+
+            </div>
+
+
+
+
+            <div class="text-center mt-4">
+
+                <button class="btn btn-outline-primary btn-lg">
+
+                    📥 {% trans "Download Report" %}
+
+                </button>
+
+            </div>
+
+
+
+        </div>
+
+
+    </div>
+
+
+</div>
+
+{% endblock %}

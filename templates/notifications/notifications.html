@@ -1,0 +1,240 @@
+{% extends "base.html" %}
+{% load i18n %}
+
+{% block title %}
+{% trans "Notifications" %} | SafeShield Protection
+{% endblock %}
+
+{% block content %}
+
+<div class="container py-5">
+
+
+    <div class="p-5 mb-4 rounded-4 shadow text-white hero-dashboard">
+
+        <h1 class="fw-bold">
+            🔔 {% trans "Security Notifications" %}
+        </h1>
+
+        <p class="lead">
+            {% trans "Stay updated with your latest security alerts and activities." %}
+        </p>
+
+    </div>
+
+
+
+    <div class="card shadow border-0 rounded-4">
+
+
+        <div class="card-header bg-danger text-white">
+
+            <h4 class="mb-0">
+                ⚠️ {% trans "Latest Alerts" %}
+            </h4>
+
+        </div>
+
+
+
+        <div class="card-body">
+
+
+            <div class="list-group">
+
+
+                <div class="list-group-item d-flex justify-content-between align-items-center">
+
+                    <div>
+
+                        🔐
+                        <strong>
+                            {% trans "Successful Login" %}
+                        </strong>
+
+                        <br>
+
+                        <small class="text-muted">
+                            {% trans "Your account was accessed successfully." %}
+                        </small>
+
+                    </div>
+
+
+                    <span class="badge bg-success">
+                        {% trans "Safe" %}
+                    </span>
+
+
+                </div>
+
+
+
+
+                <div class="list-group-item d-flex justify-content-between align-items-center">
+
+                    <div>
+
+                        ⚠️
+                        <strong>
+                            {% trans "Suspicious Activity Check" %}
+                        </strong>
+
+                        <br>
+
+                        <small class="text-muted">
+                            {% trans "No suspicious activity was detected." %}
+                        </small>
+
+                    </div>
+
+
+                    <span class="badge bg-success">
+                        {% trans "Normal" %}
+                    </span>
+
+
+                </div>
+
+
+
+
+                <div class="list-group-item d-flex justify-content-between align-items-center">
+
+                    <div>
+
+                        🌐
+                        <strong>
+                            {% trans "Website Scan Completed" %}
+                        </strong>
+
+                        <br>
+
+                        <small class="text-muted">
+                            {% trans "The security scan finished successfully." %}
+                        </small>
+
+                    </div>
+
+
+                    <span class="badge bg-primary">
+                        {% trans "Completed" %}
+                    </span>
+
+
+                </div>
+
+
+
+
+                <div class="list-group-item d-flex justify-content-between align-items-center">
+
+                    <div>
+
+                        🔑
+                        <strong>
+                            {% trans "Password Security" %}
+                        </strong>
+
+                        <br>
+
+                        <small class="text-muted">
+                            {% trans "Your password strength is excellent." %}
+                        </small>
+
+                    </div>
+
+
+                    <span class="badge bg-success">
+                        {% trans "Secure" %}
+                    </span>
+
+
+                </div>
+
+
+
+            </div>
+
+
+        </div>
+
+
+    </div>
+
+
+
+
+    <div class="card shadow border-0 rounded-4 mt-4">
+
+
+        <div class="card-header bg-dark text-white">
+
+            <h5 class="mb-0">
+                📊 {% trans "Security Summary" %}
+            </h5>
+
+        </div>
+
+
+
+        <div class="card-body">
+
+
+            <div class="row text-center">
+
+
+                <div class="col-md-4">
+
+                    <h3 class="text-success">
+                        0
+                    </h3>
+
+                    <p>
+                        {% trans "Critical Threats" %}
+                    </p>
+
+                </div>
+
+
+
+                <div class="col-md-4">
+
+                    <h3>
+                        24
+                    </h3>
+
+                    <p>
+                        {% trans "Security Actions" %}
+                    </p>
+
+                </div>
+
+
+
+                <div class="col-md-4">
+
+                    <h3 class="text-primary">
+                        95%
+                    </h3>
+
+                    <p>
+                        {% trans "Protection Level" %}
+                    </p>
+
+                </div>
+
+
+            </div>
+
+
+        </div>
+
+
+    </div>
+
+
+
+</div>
+
+{% endblock %}

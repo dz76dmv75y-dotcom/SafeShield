@@ -1,0 +1,182 @@
+{% extends "base.html" %}
+{% load i18n %}
+
+{% block title %}
+{% trans "Security Center" %} | SafeShield Protection
+{% endblock %}
+
+{% block content %}
+
+<div class="container py-5">
+
+    <div class="p-5 mb-4 rounded-4 shadow hero-dashboard text-white">
+
+        <h1 class="fw-bold">
+            🛡️ {% trans "Security Center" %}
+        </h1>
+
+        <p class="lead">
+            {% trans "Manage and monitor all protection services from one place." %}
+        </p>
+
+    </div>
+
+
+    <div class="row g-4">
+
+
+        <!-- Security Score -->
+
+        <div class="col-lg-4">
+
+            <div class="card shadow border-0 rounded-4 text-center">
+
+                <div class="card-body">
+
+                    <h5>
+                        {% trans "Security Score" %}
+                    </h5>
+
+                    <h1 class="display-3 text-success fw-bold">
+                        95%
+                    </h1>
+
+                    <span class="badge bg-success">
+                        {% trans "Excellent Protection" %}
+                    </span>
+
+                </div>
+
+            </div>
+
+        </div>
+
+
+
+        <!-- Protection Services -->
+
+        <div class="col-lg-8">
+
+            <div class="card shadow border-0 rounded-4">
+
+                <div class="card-header bg-primary text-white">
+
+                    <h4 class="mb-0">
+                        🛡️ {% trans "Protection Services" %}
+                    </h4>
+
+                </div>
+
+
+                <div class="card-body">
+
+
+                    <div class="list-group">
+
+
+                        <div class="list-group-item d-flex justify-content-between">
+
+                            🌐 {% trans "Website Scanner" %}
+
+                            <span class="badge bg-success">
+                                Active
+                            </span>
+
+                        </div>
+
+
+                        <div class="list-group-item d-flex justify-content-between">
+
+                            🔐 {% trans "File Encryption" %}
+
+                            <span class="badge bg-success">
+                                Active
+                            </span>
+
+                        </div>
+
+
+                        <div class="list-group-item d-flex justify-content-between">
+
+                            🎣 {% trans "Phishing Detection" %}
+
+                            <span class="badge bg-success">
+                                Active
+                            </span>
+
+                        </div>
+
+
+                        <div class="list-group-item d-flex justify-content-between">
+
+                            🦠 {% trans "Malware Scanner" %}
+
+                            <span class="badge bg-success">
+                                Active
+                            </span>
+
+                        </div>
+
+
+                    </div>
+
+
+                </div>
+
+            </div>
+
+        </div>
+
+
+    </div>
+
+
+
+    <!-- Recent Activity -->
+
+
+    <div class="card shadow border-0 rounded-4 mt-5">
+
+
+        <div class="card-header bg-dark text-white">
+
+            <h4 class="mb-0">
+                📊 {% trans "Recent Security Activity" %}
+            </h4>
+
+        </div>
+
+
+        <div class="card-body">
+
+
+            <ul class="list-group list-group-flush">
+
+
+                <li class="list-group-item">
+                    ✅ {% trans "Website scan completed successfully." %}
+                </li>
+
+
+                <li class="list-group-item">
+                    ✅ {% trans "No suspicious login attempts detected." %}
+                </li>
+
+
+                <li class="list-group-item">
+                    ✅ {% trans "All security systems are working normally." %}
+                </li>
+
+
+            </ul>
+
+
+        </div>
+
+
+    </div>
+
+
+</div>
+
+{% endblock %}

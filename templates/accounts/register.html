@@ -1,19 +1,195 @@
-{% extends 'base.html' %}
+{% extends "base.html" %}
+{% load static %}
 {% load i18n %}
-{% block title %}{% trans "Create SafeShield Account" %}{% endblock %}
-{% block content %}
-<div class="row justify-content-center">
-  <div class="col-lg-6">
-    <div class="card border-0 shadow-lg p-4">
-      <h2 class="mb-3">{% trans "Create your SafeShield account" %}</h2>
-      <p class="text-secondary">{% trans "Protect your digital identity with modern, intelligent cybersecurity controls." %}</p>
-      <form method="post">
-        {% csrf_token %}
-        {{ form.as_p }}
-        <button class="btn btn-success w-100 mt-3" type="submit">{% trans "Create Account" %}</button>
-      </form>
-      <p class="mt-3 text-secondary">{% trans "Already have an account?" %} <a href="{% url 'accounts:login' %}" class="text-success">{% trans "Sign in" %}</a></p>
-    </div>
-  </div>
-</div>
+
+{% block title %}
+{% trans "Create Account" %} | SafeShield Protection
 {% endblock %}
+
+{% block content %}
+
+<section class="container py-5">
+
+    <div class="row justify-content-center">
+
+        <div class="col-lg-6 col-md-8">
+
+            <div class="card shadow-lg border-0 rounded-4 overflow-hidden">
+
+                <!-- Header -->
+                <div class="hero-dashboard text-center py-4">
+
+                    <img src="{% static 'images/logo.png' %}"
+                         alt="SafeShield Logo"
+                         width="90">
+
+                    <h2 class="text-white fw-bold mt-3">
+                        🛡️ SafeShield Protection
+                    </h2>
+
+                    <p class="text-light mb-0">
+                        {% trans "Create Your Secure Account" %}
+                    </p>
+
+                </div>
+
+                <!-- Body -->
+                <div class="card-body p-4">
+
+                    {% if messages %}
+                        {% for message in messages %}
+                            <div class="alert alert-{{ message.tags }}">
+                                {{ message }}
+                            </div>
+                        {% endfor %}
+                    {% endif %}
+
+                    <form method="post">
+
+                        {% csrf_token %}
+
+                        <div class="mb-3">
+
+                            <label class="form-label">
+                                {% trans "Full Name" %}
+                            </label>
+
+                            <input type="text"
+                                   name="full_name"
+                                   class="form-control form-control-lg"
+                                   placeholder="{% trans 'Enter your full name' %}"
+                                   required>
+
+                        </div>
+
+                        <div class="mb-3">
+
+                            <label class="form-label">
+                                {% trans "Username" %}
+                            </label>
+
+                            <input type="text"
+                                   name="username"
+                                   class="form-control form-control-lg"
+                                   placeholder="{% trans 'Choose a username' %}"
+                                   required>
+
+                        </div>
+
+                        <div class="mb-3">
+
+                            <label class="form-label">
+                                {% trans "Email Address" %}
+                            </label>
+
+                            <input type="email"
+                                   name="email"
+                                   class="form-control form-control-lg"
+                                   placeholder="example@email.com"
+                                   required>
+
+                        </div>
+
+                        <div class="mb-3">
+
+                            <label class="form-label">
+                                {% trans "Password" %}
+                            </label>
+
+                            <div class="input-group">
+
+                                <input type="password"
+                                       id="password1"
+                                       name="password1"
+                                       class="form-control form-control-lg"
+                                       required>
+
+                                <button class="btn btn-outline-secondary"
+                                        type="button"
+                                        onclick="togglePassword('password1')">
+                                    👁
+                                </button>
+
+                            </div>
+
+                        </div>
+
+                        <div class="mb-4">
+
+                            <label class="form-label">
+                                {% trans "Confirm Password" %}
+                            </label>
+
+                            <div class="input-group">
+
+                                <input type="password"
+                                       id="password2"
+                                       name="password2"
+                                       class="form-control form-control-lg"
+                                       required>
+
+                                <button class="btn btn-outline-secondary"
+                                        type="button"
+                                        onclick="togglePassword('password2')">
+                                    👁
+                                </button>
+
+                            </div>
+
+                        </div>
+
+                        <div class="form-check mb-4">
+
+                            <input class="form-check-input"
+                                   type="checkbox"
+                                   required
+                                   id="terms">
+
+                            <label class="form-check-label" for="terms">
+
+                                {% trans "I agree to the Terms & Privacy Policy." %}
+
+                            </label>
+
+                        </div>
+
+                        <div class="d-grid">
+
+                            <button class="btn btn-success btn-lg">
+
+                                🛡️ {% trans "Create Account" %}
+
+                            </button>
+
+                        </div>
+
+                    </form>
+
+                    <hr class="my-4">
+
+                    <div class="text-center">
+
+                        <p class="mb-2">
+
+                            {% trans "Already have an account?" %}
+
+                        </p>
+
+                        <a href="{% url 'login' %}"
+                           class="btn btn-outline-primary">
+
+                            {% trans "Login" %}
+
+                        </a>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+            <div class="text-center mt-4">
+
+                <small class="text-muted">
+
+                    🔒 {% trans "SafeShield encrypt

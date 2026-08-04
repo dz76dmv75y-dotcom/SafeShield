@@ -1,0 +1,305 @@
+{% extends "base.html" %}
+{% load static %}
+{% load i18n %}
+
+{% block title %}
+{% trans "Dashboard" %} | SafeShield Protection
+{% endblock %}
+
+{% block content %}
+
+<div class="container py-4">
+
+    <!-- Welcome -->
+    <div class="p-5 mb-4 rounded-4 text-white shadow hero-dashboard">
+
+        <div class="row align-items-center">
+
+            <div class="col-lg-8">
+
+                <h1 class="fw-bold">
+                    🛡️ {% trans "Welcome" %},
+                    {{ request.user.get_full_name|default:request.user.username }}
+                </h1>
+
+                <p class="lead mb-0">
+                    {% trans "Monitor your digital security and manage all protection services from one place." %}
+                </p>
+
+            </div>
+
+            <div class="col-lg-4 text-center mt-4 mt-lg-0">
+
+                <div class="display-4 fw-bold">
+                    95%
+                </div>
+
+                <div class="text-light">
+                    {% trans "Security Score" %}
+                </div>
+
+            </div>
+
+        </div>
+
+    </div>
+
+    <!-- Statistics -->
+
+    <div class="row g-4 mb-4">
+
+        <div class="col-md-3">
+
+            <div class="card border-0 shadow rounded-4 h-100">
+
+                <div class="card-body text-center">
+
+                    <div class="display-6">🛡️</div>
+
+                    <h3 class="fw-bold">24</h3>
+
+                    <p class="text-muted mb-0">
+                        {% trans "Security Scans" %}
+                    </p>
+
+                </div>
+
+            </div>
+
+        </div>
+
+        <div class="col-md-3">
+
+            <div class="card border-0 shadow rounded-4 h-100">
+
+                <div class="card-body text-center">
+
+                    <div class="display-6">⚠️</div>
+
+                    <h3 class="fw-bold text-danger">0</h3>
+
+                    <p class="text-muted mb-0">
+                        {% trans "Threats Found" %}
+                    </p>
+
+                </div>
+
+            </div>
+
+        </div>
+
+        <div class="col-md-3">
+
+            <div class="card border-0 shadow rounded-4 h-100">
+
+                <div class="card-body text-center">
+
+                    <div class="display-6">🔐</div>
+
+                    <h3 class="fw-bold">8</h3>
+
+                    <p class="text-muted mb-0">
+                        {% trans "Protected Accounts" %}
+                    </p>
+
+                </div>
+
+            </div>
+
+        </div>
+
+        <div class="col-md-3">
+
+            <div class="card border-0 shadow rounded-4 h-100">
+
+                <div class="card-body text-center">
+
+                    <div class="display-6">📢</div>
+
+                    <h3 class="fw-bold">3</h3>
+
+                    <p class="text-muted mb-0">
+                        {% trans "Notifications" %}
+                    </p>
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </div>
+
+    <!-- Quick Actions -->
+
+    <div class="card border-0 shadow rounded-4 mb-4">
+
+        <div class="card-header bg-primary text-white">
+
+            <h4 class="mb-0">
+                ⚡ {% trans "Quick Actions" %}
+            </h4>
+
+        </div>
+
+        <div class="card-body">
+
+            <div class="row g-3">
+
+                <div class="col-md-4 d-grid">
+                    <a href="{% url 'link_scanner' %}" class="btn btn-outline-primary btn-lg">
+                        🌐 {% trans "Scan Website" %}
+                    </a>
+                </div>
+
+                <div class="col-md-4 d-grid">
+                    <a href="{% url 'password_manager' %}" class="btn btn-outline-success btn-lg">
+                        🔑 {% trans "Password Manager" %}
+                    </a>
+                </div>
+
+                <div class="col-md-4 d-grid">
+                    <a href="{% url 'security_report' %}" class="btn btn-outline-dark btn-lg">
+                        📊 {% trans "Security Report" %}
+                    </a>
+                </div>
+
+                <div class="col-md-4 d-grid">
+                    <a href="{% url 'file_encrypt' %}" class="btn btn-outline-warning btn-lg">
+                        📁 {% trans "Encrypt Files" %}
+                    </a>
+                </div>
+
+                <div class="col-md-4 d-grid">
+                    <a href="{% url 'notifications' %}" class="btn btn-outline-danger btn-lg">
+                        🔔 {% trans "Notifications" %}
+                    </a>
+                </div>
+
+                <div class="col-md-4 d-grid">
+                    <a href="{% url 'profile' %}" class="btn btn-outline-secondary btn-lg">
+                        👤 {% trans "My Profile" %}
+                    </a>
+                </div>
+
+            </div>
+
+        </div>
+
+    </div>
+
+    <!-- Security Activity -->
+
+    <div class="row g-4">
+
+        <div class="col-lg-7">
+
+            <div class="card border-0 shadow rounded-4">
+
+                <div class="card-header bg-success text-white">
+
+                    <h5 class="mb-0">
+                        📈 {% trans "Security Activity" %}
+                    </h5>
+
+                </div>
+
+                <div class="card-body">
+
+                    <canvas id="securityChart" height="120"></canvas>
+
+                </div>
+
+            </div>
+
+        </div>
+
+        <div class="col-lg-5">
+
+            <div class="card border-0 shadow rounded-4">
+
+                <div class="card-header bg-danger text-white">
+
+                    <h5 class="mb-0">
+                        ⚠ {% trans "Latest Alerts" %}
+                    </h5>
+
+                </div>
+
+                <div class="card-body">
+
+                    <ul class="list-group list-group-flush">
+
+                        <li class="list-group-item">
+                            ✅ {% trans "No phishing websites detected." %}
+                        </li>
+
+                        <li class="list-group-item">
+                            ✅ {% trans "Password strength is excellent." %}
+                        </li>
+
+                        <li class="list-group-item">
+                            ✅ {% trans "Last security scan completed successfully." %}
+                        </li>
+
+                        <li class="list-group-item">
+                            ✅ {% trans "No suspicious login attempts detected." %}
+                        </li>
+
+                    </ul>
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</div>
+
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+
+<script>
+
+const ctx = document.getElementById('securityChart');
+
+new Chart(ctx, {
+
+    type: 'line',
+
+    data: {
+
+        labels: ['Mon','Tue','Wed','Thu','Fri','Sat','Sun'],
+
+        datasets: [{
+
+            label: 'Security',
+
+            data: [82,84,88,90,91,94,95],
+
+            tension:0.4,
+
+            fill:true
+
+        }]
+
+    },
+
+    options: {
+
+        responsive:true,
+
+        plugins:{
+            legend:{
+                display:true
+            }
+        }
+
+    }
+
+});
+
+</script>
+
+{% endblock %}

@@ -83,3 +83,80 @@
   </div>
 </div>
 {% endblock %}
+<div class="col-12">
+
+    <div class="card border-0 shadow-lg p-4">
+
+        <h4 class="mb-4">
+            🛡️ {% trans "Security Services" %}
+        </h4>
+
+
+        <div class="row g-3">
+
+
+            <div class="col-md-4">
+                <a href="{% url 'protection:link_scanner' %}"
+                   class="btn btn-outline-primary w-100">
+
+                    🌐 {% trans "Website Scanner" %}
+
+                </a>
+            </div>
+
+
+            <div class="col-md-4">
+                <a href="{% url 'passwords:list' %}"
+                   class="btn btn-outline-success w-100">
+
+                    🔑 {% trans "Password Manager" %}
+
+                </a>
+            </div>
+
+
+            <div class="col-md-4">
+                <a href="{% url 'protection:file_encrypt' %}"
+                   class="btn btn-outline-dark w-100">
+
+                    🔐 {% trans "File Encryption" %}
+
+                </a>
+            </div>
+
+
+            <div class="col-md-4">
+                <a href="{% url 'protection:phishing_detector' %}"
+                   class="btn btn-outline-danger w-100">
+
+                    🎣 {% trans "Phishing Detector" %}
+
+                </a>
+            </div>
+
+
+            <div class="col-md-4">
+                <a href="{% url 'protection:malware_scan' %}"
+                   class="btn btn-outline-warning w-100">
+
+                    🦠 {% trans "Malware Scan" %}
+                    
+                </a>
+            </div>
+
+
+            <div class="col-md-4">
+                <a href="{% url 'reports:home' %}"
+                   class="btn btn-outline-secondary w-100">
+
+                    📊 {% trans "Reports" %}
+
+                </a>
+            </div>
+
+
+        </div>
+
+    </div>
+
+</div>

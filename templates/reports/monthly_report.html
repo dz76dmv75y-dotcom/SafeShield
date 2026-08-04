@@ -1,0 +1,182 @@
+{% extends "base.html" %}
+{% load i18n %}
+
+{% block title %}
+{% trans "Monthly Security Report" %} | SafeShield Protection
+{% endblock %}
+
+{% block content %}
+
+<div class="container py-5">
+
+
+    <div class="p-5 mb-4 rounded-4 shadow text-white hero-dashboard">
+
+        <h1 class="fw-bold">
+            📅 {% trans "Monthly Security Report" %}
+        </h1>
+
+        <p class="lead">
+            {% trans "A complete overview of your security activities this month." %}
+        </p>
+
+    </div>
+
+
+
+    <div class="row g-4 mb-4">
+
+
+        <div class="col-md-3">
+
+            <div class="card shadow border-0 rounded-4 text-center">
+
+                <div class="card-body">
+
+                    <h2>🔍</h2>
+
+                    <h3 class="fw-bold">
+                        120
+                    </h3>
+
+                    <p class="text-muted">
+                        {% trans "Total Scans" %}
+                    </p>
+
+                </div>
+
+            </div>
+
+        </div>
+
+
+
+        <div class="col-md-3">
+
+            <div class="card shadow border-0 rounded-4 text-center">
+
+                <div class="card-body">
+
+                    <h2>⚠️</h2>
+
+                    <h3 class="fw-bold text-danger">
+                        2
+                    </h3>
+
+                    <p class="text-muted">
+                        {% trans "Threats Blocked" %}
+                    </p>
+
+                </div>
+
+            </div>
+
+        </div>
+
+
+
+        <div class="col-md-3">
+
+            <div class="card shadow border-0 rounded-4 text-center">
+
+                <div class="card-body">
+
+                    <h2>🔐</h2>
+
+                    <h3 class="fw-bold">
+                        98%
+                    </h3>
+
+                    <p class="text-muted">
+                        {% trans "Protection Rate" %}
+                    </p>
+
+                </div>
+
+            </div>
+
+        </div>
+
+
+
+        <div class="col-md-3">
+
+            <div class="card shadow border-0 rounded-4 text-center">
+
+                <div class="card-body">
+
+                    <h2>📈</h2>
+
+                    <h3 class="fw-bold text-success">
+                        +15%
+                    </h3>
+
+                    <p class="text-muted">
+                        {% trans "Security Improvement" %}
+                    </p>
+
+                </div>
+
+            </div>
+
+        </div>
+
+
+    </div>
+
+
+
+
+    <div class="card shadow border-0 rounded-4">
+
+
+        <div class="card-header bg-success text-white">
+
+            <h4 class="mb-0">
+                📊 {% trans "Monthly Activity Summary" %}
+            </h4>
+
+        </div>
+
+
+
+        <div class="card-body">
+
+
+            <ul class="list-group list-group-flush">
+
+
+                <li class="list-group-item">
+                    ✅ {% trans "Website scans completed successfully." %}
+                </li>
+
+
+                <li class="list-group-item">
+                    ✅ {% trans "Passwords checked and secured." %}
+                </li>
+
+
+                <li class="list-group-item">
+                    ✅ {% trans "Suspicious activities were monitored." %}
+                </li>
+
+
+                <li class="list-group-item">
+                    ✅ {% trans "Security level improved this month." %}
+                </li>
+
+
+            </ul>
+
+
+        </div>
+
+
+    </div>
+
+
+
+
+</div>
+
+{% endblock %}

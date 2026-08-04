@@ -1,0 +1,190 @@
+{% extends "base.html" %}
+{% load i18n %}
+
+{% block title %}
+{% trans "File Encryption" %} | SafeShield Protection
+{% endblock %}
+
+{% block content %}
+
+<div class="container py-5">
+
+    <div class="card shadow-lg border-0 rounded-4">
+
+        <div class="card-header bg-dark text-white">
+
+            <h2 class="mb-0">
+                🔐 {% trans "File Encryption Center" %}
+            </h2>
+
+        </div>
+
+
+        <div class="card-body">
+
+            <p class="text-muted">
+                {% trans "Encrypt and protect your sensitive files using secure encryption technology." %}
+            </p>
+
+
+            <form method="post" enctype="multipart/form-data">
+
+                {% csrf_token %}
+
+                <div class="mb-4">
+
+                    <label class="form-label fw-bold">
+
+                        {% trans "Choose File" %}
+
+                    </label>
+
+
+                    <input type="file"
+                           class="form-control form-control-lg"
+                           name="file"
+                           required>
+
+                </div>
+
+
+                <div class="mb-4">
+
+                    <label class="form-label fw-bold">
+
+                        {% trans "Encryption Password" %}
+
+                    </label>
+
+
+                    <input type="password"
+                           class="form-control form-control-lg"
+                           name="password"
+                           placeholder="{% trans 'Enter encryption password' %}"
+                           required>
+
+                </div>
+
+
+                <div class="row g-3">
+
+
+                    <div class="col-md-6 d-grid">
+
+                        <button class="btn btn-primary btn-lg">
+
+                            🔒 {% trans "Encrypt File" %}
+
+                        </button>
+
+                    </div>
+
+
+                    <div class="col-md-6 d-grid">
+
+                        <button class="btn btn-outline-success btn-lg">
+
+                            🔓 {% trans "Decrypt File" %}
+
+                        </button>
+
+                    </div>
+
+
+                </div>
+
+
+            </form>
+
+
+            <hr class="my-4">
+
+
+            <div class="row text-center">
+
+
+                <div class="col-md-4">
+
+                    <div class="card border-0 shadow-sm rounded-4">
+
+                        <div class="card-body">
+
+                            <h3>🛡️</h3>
+
+                            <h5>
+                                {% trans "Secure Encryption" %}
+                            </h5>
+
+                            <p class="text-muted">
+
+                                {% trans "Your files are protected from unauthorized access." %}
+
+                            </p>
+
+                        </div>
+
+                    </div>
+
+                </div>
+
+
+                <div class="col-md-4">
+
+                    <div class="card border-0 shadow-sm rounded-4">
+
+                        <div class="card-body">
+
+                            <h3>🔑</h3>
+
+                            <h5>
+                                {% trans "Password Protection" %}
+                            </h5>
+
+                            <p class="text-muted">
+
+                                {% trans "Only users with the password can access files." %}
+
+                            </p>
+
+                        </div>
+
+                    </div>
+
+                </div>
+
+
+                <div class="col-md-4">
+
+                    <div class="card border-0 shadow-sm rounded-4">
+
+                        <div class="card-body">
+
+                            <h3>📁</h3>
+
+                            <h5>
+                                {% trans "File Safety" %}
+                            </h5>
+
+                            <p class="text-muted">
+
+                                {% trans "Keep your important documents private." %}
+
+                            </p>
+
+                        </div>
+
+                    </div>
+
+                </div>
+
+
+            </div>
+
+
+        </div>
+
+    </div>
+
+</div>
+
+{% endblock %}

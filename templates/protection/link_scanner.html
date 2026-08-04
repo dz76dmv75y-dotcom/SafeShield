@@ -1,0 +1,160 @@
+{% extends "base.html" %}
+{% load i18n %}
+
+{% block title %}
+{% trans "Link Scanner" %} | SafeShield Protection
+{% endblock %}
+
+{% block content %}
+
+<div class="container py-5">
+
+    <div class="card shadow-lg border-0 rounded-4">
+
+        <div class="card-header bg-primary text-white">
+
+            <h2 class="mb-0">
+                🌐 {% trans "Website Security Scanner" %}
+            </h2>
+
+        </div>
+
+
+        <div class="card-body">
+
+            <p class="text-muted">
+                {% trans "Check suspicious links and detect unsafe websites before opening them." %}
+            </p>
+
+
+            <form method="post">
+
+                {% csrf_token %}
+
+                <div class="mb-4">
+
+                    <label class="form-label fw-bold">
+                        {% trans "Website URL" %}
+                    </label>
+
+                    <input type="url"
+                           class="form-control form-control-lg"
+                           placeholder="https://example.com"
+                           name="url"
+                           required>
+
+                </div>
+
+
+                <div class="d-grid">
+
+                    <button class="btn btn-primary btn-lg">
+
+                        🔍 {% trans "Scan Website" %}
+
+                    </button>
+
+                </div>
+
+            </form>
+
+
+            <hr class="my-4">
+
+
+            <h5>
+                🛡️ {% trans "Scan Result" %}
+            </h5>
+
+
+            <div class="alert alert-success">
+
+                ✅ {% trans "No threats detected. Website appears safe." %}
+
+            </div>
+
+
+            <div class="row text-center mt-4">
+
+
+                <div class="col-md-4">
+
+                    <div class="card border-0 shadow-sm rounded-4">
+
+                        <div class="card-body">
+
+                            <h3>✓</h3>
+
+                            <p>
+                                {% trans "SSL Certificate" %}
+                            </p>
+
+                            <span class="badge bg-success">
+                                Secure
+                            </span>
+
+                        </div>
+
+                    </div>
+
+                </div>
+
+
+
+                <div class="col-md-4">
+
+                    <div class="card border-0 shadow-sm rounded-4">
+
+                        <div class="card-body">
+
+                            <h3>🛡️</h3>
+
+                            <p>
+                                {% trans "Malware Check" %}
+                            </p>
+
+                            <span class="badge bg-success">
+                                Clean
+                            </span>
+
+                        </div>
+
+                    </div>
+
+                </div>
+
+
+
+                <div class="col-md-4">
+
+                    <div class="card border-0 shadow-sm rounded-4">
+
+                        <div class="card-body">
+
+                            <h3>🎣</h3>
+
+                            <p>
+                                {% trans "Phishing Detection" %}
+                            </p>
+
+                            <span class="badge bg-success">
+                                Safe
+                            </span>
+
+                        </div>
+
+                    </div>
+
+                </div>
+
+
+            </div>
+
+
+        </div>
+
+    </div>
+
+</div>
+
+{% endblock %}

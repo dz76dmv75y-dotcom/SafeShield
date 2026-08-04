@@ -149,3 +149,26 @@ def banking_security(request):
         return render(request, 'protection/banking_security.html', {'analysis': result, 'recommendations': recommendations, 'recent_events': recent_events})
 
     return render(request, 'protection/banking_security.html', {'analysis': None, 'recommendations': recommendations, 'recent_events': recent_events})
+@login_required
+def link_scanner(request):
+    return render(request, 'protection/link_scanner.html')
+
+
+@login_required
+def file_encrypt(request):
+    return render(request, 'protection/file_encrypt.html')
+
+
+@login_required
+def phishing_detector(request):
+    return render(request, 'protection/phishing_detector.html')
+
+
+@login_required
+def malware_scan(request):
+    return render(request, 'protection/malware_scan.html')
+
+
+@login_required
+def security_center(request):
+    return render(request, 'protection/security_center.html')

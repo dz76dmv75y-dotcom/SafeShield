@@ -1,0 +1,163 @@
+{% extends "base.html" %}
+{% load i18n %}
+
+{% block title %}
+{% trans "Phishing Detector" %} | SafeShield Protection
+{% endblock %}
+
+{% block content %}
+
+<div class="container py-5">
+
+    <div class="card shadow-lg border-0 rounded-4">
+
+        <div class="card-header bg-danger text-white">
+
+            <h2 class="mb-0">
+                🎣 {% trans "Phishing Detection Center" %}
+            </h2>
+
+        </div>
+
+
+        <div class="card-body">
+
+            <p class="text-muted">
+                {% trans "Detect suspicious emails, messages, and websites that may attempt to steal your information." %}
+            </p>
+
+
+            <form method="post">
+
+                {% csrf_token %}
+
+
+                <div class="mb-4">
+
+                    <label class="form-label fw-bold">
+
+                        {% trans "Enter Link or Message" %}
+
+                    </label>
+
+
+                    <textarea class="form-control form-control-lg"
+                              rows="5"
+                              name="content"
+                              placeholder="{% trans 'Paste suspicious link or message here...' %}"
+                              required></textarea>
+
+                </div>
+
+
+                <div class="d-grid">
+
+                    <button class="btn btn-danger btn-lg">
+
+                        🔍 {% trans "Analyze Content" %}
+
+                    </button>
+
+                </div>
+
+
+            </form>
+
+
+            <hr class="my-4">
+
+
+            <h4>
+                🛡️ {% trans "Analysis Result" %}
+            </h4>
+
+
+            <div class="alert alert-success">
+
+                ✅ {% trans "No phishing indicators detected." %}
+
+            </div>
+
+
+            <div class="row g-4 mt-3">
+
+
+                <div class="col-md-4">
+
+                    <div class="card border-0 shadow-sm rounded-4 text-center">
+
+                        <div class="card-body">
+
+                            <h2>🔗</h2>
+
+                            <h5>
+                                {% trans "URL Reputation" %}
+                            </h5>
+
+                            <span class="badge bg-success">
+                                Safe
+                            </span>
+
+                        </div>
+
+                    </div>
+
+                </div>
+
+
+                <div class="col-md-4">
+
+                    <div class="card border-0 shadow-sm rounded-4 text-center">
+
+                        <div class="card-body">
+
+                            <h2>📧</h2>
+
+                            <h5>
+                                {% trans "Message Analysis" %}
+                            </h5>
+
+                            <span class="badge bg-success">
+                                Clean
+                            </span>
+
+                        </div>
+
+                    </div>
+
+                </div>
+
+
+                <div class="col-md-4">
+
+                    <div class="card border-0 shadow-sm rounded-4 text-center">
+
+                        <div class="card-body">
+
+                            <h2>⚠️</h2>
+
+                            <h5>
+                                {% trans "Risk Level" %}
+                            </h5>
+
+                            <span class="badge bg-success">
+                                Low
+                            </span>
+
+                        </div>
+
+                    </div>
+
+                </div>
+
+
+            </div>
+
+
+        </div>
+
+    </div>
+
+</div>
+
+{% endblock %}
