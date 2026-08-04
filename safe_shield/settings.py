@@ -25,8 +25,11 @@ SECRET_KEY = os.getenv(
     "django-insecure-change-this-key"
 )
 
-# مؤقتًا لمعرفة سبب خطأ 500
-DEBUG = os.getenv("DEBUG", "false").strip().lower() in ("true", "1", "yes")
+# DEBUG controlled by Render Environment Variables
+DEBUG = os.getenv(
+    "DEBUG",
+    "false"
+).strip().lower() in ("true", "1", "yes")
 
 
 ALLOWED_HOSTS = [
@@ -51,17 +54,14 @@ SESSION_COOKIE_HTTPONLY = True
 CSRF_COOKIE_HTTPONLY = True
 
 
-# Render يستخدم HTTPS
-if not DEBUG:
+SESSION_COOKIE_SECURE = True
 
-    SESSION_COOKIE_SECURE = True
+CSRF_COOKIE_SECURE = True
 
-    CSRF_COOKIE_SECURE = True
-
-    SECURE_PROXY_SSL_HEADER = (
-        "HTTP_X_FORWARDED_PROTO",
-        "https",
-    )
+SECURE_PROXY_SSL_HEADER = (
+    "HTTP_X_FORWARDED_PROTO",
+    "https",
+)
 
 
 # =========================================================
@@ -385,11 +385,8 @@ EMAIL_HOST_PASSWORD = os.getenv(
 
 
 DEFAULT_FROM_EMAIL = os.getenv(
-
     "DEFAULT_FROM_EMAIL",
-
     "SafeShield <safeshield.project@gmail.com>"
-
 )
 
 
@@ -410,6 +407,8 @@ RESEND_API_KEY = os.getenv(
 DEFAULT_AUTO_FIELD = (
     "django.db.models.BigAutoField"
 )
+
+
 # ==========================================
 # SafeShield Protection - Login Session
 # ==========================================
