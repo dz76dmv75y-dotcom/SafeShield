@@ -26,10 +26,7 @@ SECRET_KEY = os.getenv(
 )
 
 # DEBUG controlled by Render Environment Variables
-DEBUG = os.getenv(
-    "DEBUG",
-    "false"
-).strip().lower() in ("true", "1", "yes")
+DEBUG = os.getenv("DEBUG", "False").lower() == "true"
 
 
 ALLOWED_HOSTS = [
@@ -53,15 +50,7 @@ SESSION_COOKIE_HTTPONLY = True
 
 CSRF_COOKIE_HTTPONLY = True
 
-
-SESSION_COOKIE_SECURE = True
-
-CSRF_COOKIE_SECURE = True
-
-SECURE_PROXY_SSL_HEADER = (
-    "HTTP_X_FORWARDED_PROTO",
-    "https",
-)
+    
 
 
 # =========================================================
