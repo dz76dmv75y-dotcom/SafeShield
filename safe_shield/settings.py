@@ -26,7 +26,7 @@ SECRET_KEY = os.getenv(
 )
 
 # مؤقتًا لمعرفة سبب خطأ 500
-DEBUG = True
+DEBUG = os.getenv("DEBUG", "False").lower() == "true"
 
 
 ALLOWED_HOSTS = [
@@ -410,3 +410,15 @@ RESEND_API_KEY = os.getenv(
 DEFAULT_AUTO_FIELD = (
     "django.db.models.BigAutoField"
 )
+# ==========================================
+# SafeShield Protection - Login Session
+# ==========================================
+
+# Keep users signed in after closing the browser
+SESSION_EXPIRE_AT_BROWSER_CLOSE = False
+
+# Keep the login session for 30 days
+SESSION_COOKIE_AGE = 60 * 60 * 24 * 30
+
+# Refresh the session expiry time when the user is active
+SESSION_SAVE_EVERY_REQUEST = True
