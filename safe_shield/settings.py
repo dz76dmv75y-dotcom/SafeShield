@@ -26,7 +26,7 @@ SECRET_KEY = os.getenv(
 )
 
 # مؤقتًا لمعرفة سبب خطأ 500
-DEBUG = os.getenv("DEBUG", "False").lower() == "true"
+DEBUG = os.getenv("DEBUG", "false").strip().lower() in ("true", "1", "yes")
 
 
 ALLOWED_HOSTS = [
