@@ -7,18 +7,58 @@ from django.core.exceptions import ValidationError
 from django.db.models import Q
 from django.utils.translation import gettext_lazy as _
 
-
 class RegisterForm(UserCreationForm):
+
     username = forms.CharField(
         label=_("Username"),
         min_length=3,
         max_length=10,
-        help_text=_("3-10 characters. Letters, numbers and underscore (_) only."),
+        help_text=_("3-10 characters. Use English letters, numbers and underscore (_) only."),
+        widget=forms.TextInput(
+            attrs={
+                "class": "form-control form-control-lg",
+                "placeholder": "Choose a username",
+            }
+        ),
     )
 
     email = forms.EmailField(
         label=_("Email"),
         required=True,
+        widget=forms.EmailInput(
+            attrs={
+                "class": "form-control form-control-lg",
+                "placeholder": "Enter your email",
+            }
+        ),
+    )
+    password1 = forms.CharField(
+        label=_("Password"),
+        help_text=_(
+            """
+            • At least 8 characters.<br>
+            • One uppercase letter.<br>
+            • One lowercase letter.<br>
+            • One number.<br>
+            • One special character.
+            """
+        ),
+        widget=forms.PasswordInput(
+            attrs={
+                "class": "form-control form-control-lg",
+                "id": "password1",
+            }
+        ),
+    )
+
+    password2 = forms.CharField(
+        label=_("Confirm Password"),
+        widget=forms.PasswordInput(
+            attrs={
+                "class": "form-control form-control-lg",
+                "id": "password2",
+            }
+        ),
     )
 
     class Meta:
@@ -29,7 +69,6 @@ class RegisterForm(UserCreationForm):
             "password1",
             "password2",
         )
-
     def clean_username(self):
         username = self.cleaned_data["username"].strip()
 

@@ -1,5 +1,5 @@
 from django.contrib import messages
-from django.contrib.auth import login, logout
+from django.contrib.auth import authenticate, login, logout
 from django.contrib.auth.decorators import login_required
 from django.contrib.admin.views.decorators import staff_member_required
 from django.contrib.auth.models import User
@@ -9,7 +9,7 @@ from django.utils import timezone
 from django.utils.translation import gettext as _
 from django.http import HttpResponse
 from django.conf import settings
-
+from django.db.models import Q
 from reportlab.pdfgen import canvas
 from notifications.models import Notification
 
@@ -24,24 +24,31 @@ def register_view(request):
         form = RegisterForm(request.POST)
 
         if form.is_valid():
+
             user = form.save()
 
             profile = user.profile
-            profile.verification_token = profile.verification_token or 'demo-token'
-            profile.save(update_fields=['verification_token'])
 
-            verification_url = request.build_absolute_uri(
-                reverse('accounts:verify-email', args=[profile.verification_token])
-            )
+            otp = profile.generate_otp()
 
             from django.core.mail import send_mail
 
             send_mail(
-                'Verify your SafeShield account',
-                f'Hello {user.username}, verify your account here: {verification_url}',
-                'noreply@safeshield.local',
-                [user.email],
-                fail_silently=True,
+                subject="SafeShield Verification Code",
+                message=f"""
+Welcome to SafeShield.
+
+Your verification code is:
+
+{otp}
+
+This code expires in 10 minutes.
+
+If you did not create this account, please ignore this email.
+""",
+                from_email=settings.DEFAULT_FROM_EMAIL,
+                recipient_list=[user.email],
+                fail_silently=False,
             )
 
             Notification.objects.create(
@@ -61,80 +68,75 @@ def register_view(request):
                 ip_address=get_client_ip(request),
             )
 
-            messages.success(request, _('Account created successfully.'))
-            return redirect('accounts:login')
+            messages.success(
+                request,
+                _('Verification code has been sent to your email.')
+            )
+
+            return redirect('accounts:verify-otp')
 
     else:
         form = RegisterForm()
 
     return render(request, 'accounts/register.html', {'form': form})
-
+    from django.contrib.auth import authenticate, login
 
 def login_view(request):
-    if request.method == 'POST':
+    if request.user.is_authenticated:
+        return redirect("home")  # أو الصفحة الرئيسية عندك
 
-        form = LoginForm(request, data=request.POST)
+    form = LoginForm(request, data=request.POST or None)
 
+    if request.method == "POST":
         if form.is_valid():
-
             user = form.get_user()
+
             login(request, user)
 
             profile = user.profile
-            profile.reset_login_tracking()
+            profile.failed_login_count = 0
             profile.last_login_ip = get_client_ip(request)
-            profile.last_login_at = user.last_login
-            profile.save(
-                update_fields=[
-                    'failed_login_count',
-                    'locked_until',
-                    'last_login_ip',
-                    'last_login_at'
-                ]
-            )
+            profile.last_login_at = timezone.now()
+            profile.save()
 
             SecurityLog.objects.create(
                 user=user,
-                event_type='login_success',
-                title=_('Successful login'),
-                details=_('User logged in successfully.'),
-                severity='info',
-                source='Authentication',
+                event_type="login_success",
+                title=_("Successful login"),
+                details=_("User logged in successfully."),
+                severity="info",
+                source="Authentication",
                 ip_address=get_client_ip(request),
             )
 
-            messages.success(request, _('Signed in successfully.'))
-            return redirect('dashboard:home')
+            messages.success(request, _("Welcome back!"))
 
+            return redirect("home")   # أو dashboard إذا كانت صفحتك الرئيسية هناك
 
         else:
-            username = request.POST.get('username')
+            username = request.POST.get("username")
 
-            user = User.objects.filter(username=username).first()
+            user = User.objects.filter(
+                Q(username__iexact=username) |
+                Q(email__iexact=username)
+            ).first()
 
-            if user:
+            if user and hasattr(user, "profile"):
+                user.profile.failed_login_count += 1
+                user.profile.save(update_fields=["failed_login_count"])
 
-                user.profile.record_failed_login()
+            messages.error(
+                request,
+                _("Invalid username or password.")
+            )
 
-                SecurityLog.objects.create(
-                    user=user,
-                    event_type='failed_login',
-                    title=_('Failed login attempt'),
-                    details=_('A failed login attempt was detected.'),
-                    severity='warning',
-                    source='Authentication',
-                    ip_address=get_client_ip(request),
-                )
-
-
-    else:
-        form = LoginForm()
-
-
-    return render(request, 'accounts/login.html', {'form': form})
-
-
-
+    return render(
+        request,
+        "accounts/login.html",
+        {
+            "form": form,
+        },
+    )
 def logout_view(request):
 
     if request.user.is_authenticated:
@@ -550,4 +552,25 @@ def link_scanner(request):
     return render(
         request,
         'accounts/link_scanner.html'
+    )
+@login_required
+def security_dashboard(request):
+    profile = request.user.profile
+
+    security_logs = SecurityLog.objects.filter(
+        user=request.user
+    ).order_by('-created_at')[:10]
+
+    context = {
+        'profile': profile,
+        'security_score': profile.security_score,
+        'last_login_ip': profile.last_login_ip,
+        'last_login_at': profile.last_login_at,
+        'security_logs': security_logs,
+    }
+
+    return render(
+        request,
+        'accounts/security_dashboard.html',
+        context
     )

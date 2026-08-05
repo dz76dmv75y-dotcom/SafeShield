@@ -1,4 +1,5 @@
 import secrets
+import random
 from datetime import timedelta
 
 from django.contrib.auth.models import User
@@ -20,6 +21,22 @@ class Profile(models.Model):
     locked_until = models.DateTimeField(null=True, blank=True)
     last_login_ip = models.GenericIPAddressField(null=True, blank=True)
     last_login_at = models.DateTimeField(null=True, blank=True)
+
+    # OTP Verification
+    otp_code = models.CharField(
+        max_length=6,
+        blank=True,
+    )
+
+    otp_created_at = models.DateTimeField(
+        null=True,
+        blank=True,
+    )
+
+    two_factor_enabled = models.BooleanField(
+        default=False,
+    )
+
     created_at = models.DateTimeField(auto_now_add=True)
     updated_at = models.DateTimeField(auto_now=True)
 
@@ -46,7 +63,49 @@ class Profile(models.Model):
         self.locked_until = None
         self.save(update_fields=['failed_login_count', 'locked_until'])
 
+def generate_otp(self):
 
+    self.otp_code = str(
+        random.randint(100000, 999999)
+    )
+
+    self.otp_created_at = timezone.now()
+
+    self.save(
+        update_fields=[
+            "otp_code",
+            "otp_created_at"
+        ]
+    )
+
+    return self.otp_code
+
+
+def verify_otp(self, code):
+
+    if not self.otp_code:
+        return False
+
+    if self.otp_code != code:
+        return False
+
+    if not self.otp_created_at:
+        return False
+
+    if timezone.now() - self.otp_created_at > timedelta(minutes=10):
+        return False
+
+    self.otp_code = ""
+    self.otp_created_at = None
+
+    self.save(
+        update_fields=[
+            "otp_code",
+            "otp_created_at"
+        ]
+    )
+
+    return True
 class SecurityLog(models.Model):
     EVENT_TYPES = [
         ('login_success', 'Login Success'),

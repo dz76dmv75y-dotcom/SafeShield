@@ -9,19 +9,13 @@
 {% block content %}
 
 <section class="container py-5">
-
     <div class="row justify-content-center">
-
         <div class="col-lg-6 col-md-8">
 
             <div class="card shadow-lg border-0 rounded-4 overflow-hidden">
 
-                <!-- Header -->
                 <div class="hero-dashboard text-center py-4">
-
-                    <img src="{% static 'images/logo.png' %}"
-                         alt="SafeShield Logo"
-                         width="90">
+                    <img src="{% static 'images/logo.png' %}" alt="SafeShield Logo" width="90">
 
                     <h2 class="text-white fw-bold mt-3">
                         🛡️ SafeShield Protection
@@ -30,10 +24,8 @@
                     <p class="text-light mb-0">
                         {% trans "Create Your Secure Account" %}
                     </p>
-
                 </div>
 
-                <!-- Body -->
                 <div class="card-body p-4">
 
                     {% if messages %}
@@ -44,115 +36,91 @@
                         {% endfor %}
                     {% endif %}
 
-                    <form method="post">
+                    {% if form.non_field_errors %}
+                        <div class="alert alert-danger">
+                            {% for error in form.non_field_errors %}
+                                <div>{{ error }}</div>
+                            {% endfor %}
+                        </div>
+                    {% endif %}
 
+                    <form method="post">
                         {% csrf_token %}
 
                         <div class="mb-3">
-
-                            <label class="form-label">
-                                {% trans "Full Name" %}
-                            </label>
-
-                            <input type="text"
-                                   name="full_name"
-                                   class="form-control form-control-lg"
-                                   placeholder="{% trans 'Enter your full name' %}"
-                                   required>
-
-                        </div>
-
-                        <div class="mb-3">
-
                             <label class="form-label">
                                 {% trans "Username" %}
                             </label>
 
-                            <input type="text"
-                                   name="username"
-                                   class="form-control form-control-lg"
-                                   placeholder="{% trans 'Choose a username' %}"
-                                   required>
+                            {{ form.username }}
 
+                            {% if form.username.errors %}
+                                <div class="text-danger small mt-1">
+                                    {{ form.username.errors }}
+                                </div>
+                            {% endif %}
+
+                            <small class="text-muted">
+                                {{ form.username.help_text }}
+                            </small>
                         </div>
 
                         <div class="mb-3">
-
                             <label class="form-label">
                                 {% trans "Email Address" %}
                             </label>
 
-                            <input type="email"
-                                   name="email"
-                                   class="form-control form-control-lg"
-                                   placeholder="example@email.com"
-                                   required>
+                            {{ form.email }}
 
+                            {% if form.email.errors %}
+                                <div class="text-danger small mt-1">
+                                    {{ form.email.errors }}
+                                </div>
+                            {% endif %}
                         </div>
 
                         <div class="mb-3">
-
                             <label class="form-label">
                                 {% trans "Password" %}
                             </label>
 
-                            <div class="input-group">
+                            {{ form.password1 }}
 
-                                <input type="password"
-                                       id="password1"
-                                       name="password1"
-                                       class="form-control form-control-lg"
-                                       required>
+                            {% if form.password1.errors %}
+                                <div class="text-danger small mt-1">
+                                    {{ form.password1.errors }}
+                                </div>
+                            {% endif %}
 
-                                <button class="btn btn-outline-secondary"
-                                        type="button"
-                                        onclick="togglePassword('password1')">
-                                    👁
-                                </button>
-
-                            </div>
-
+                            <small class="text-muted">
+                                {{ form.password1.help_text|safe }}
+                            </small>
                         </div>
 
                         <div class="mb-4">
-
                             <label class="form-label">
                                 {% trans "Confirm Password" %}
                             </label>
 
-                            <div class="input-group">
+                            {{ form.password2 }}
 
-                                <input type="password"
-                                       id="password2"
-                                       name="password2"
-                                       class="form-control form-control-lg"
-                                       required>
-
-                                <button class="btn btn-outline-secondary"
-                                        type="button"
-                                        onclick="togglePassword('password2')">
-                                    👁
-                                </button>
-
-                            </div>
-
+                            {% if form.password2.errors %}
+                                <div class="text-danger small mt-1">
+                                    {{ form.password2.errors }}
+                                </div>
+                            {% endif %}
                         </div>
 
                         <div class="form-check mb-4">
-
                             <input class="form-check-input"
                                    type="checkbox"
                                    required
                                    id="terms">
 
                             <label class="form-check-label" for="terms">
-
                                 {% trans "I agree to the Terms & Privacy Policy." %}
-
                             </label>
-
                         </div>
-
                         <div class="d-grid">
 
                             <button class="btn btn-success btn-lg">
@@ -173,12 +141,12 @@
         {% trans "Already have an account?" %}
     </p>
 
-    <a href="{% url 'accounts:login' %}">
-       class="btn btn-outline-primary">
+    <a href="{% url 'accounts:login' %}"
+   class="btn btn-outline-primary">
 
-        {% trans "Login" %}
+    {% trans "Login" %}
 
-    </a>
+</a>
 
 </div>
 
