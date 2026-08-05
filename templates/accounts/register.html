@@ -167,33 +167,40 @@
 
                     <hr class="my-4">
 
-                    <div class="text-center">
+                   <div class="text-center">
 
-                        <p class="mb-2">
+    <p class="mb-2">
+        {% trans "Already have an account?" %}
+    </p>
 
-                            {% trans "Already have an account?" %}
+    <a href="{% url 'accounts:login' %}">
+       class="btn btn-outline-primary">
 
-                        </p>
+        {% trans "Login" %}
 
-                        <a href="{% url 'login' %}"
-                           class="btn btn-outline-primary">
+    </a>
 
-                            {% trans "Login" %}
+</div>
 
-                        </a>
+</div>
 
-                    </div>
+</div>
 
-                </div>
-
-            </div>
-
-            <div class="text-center mt-4">
+<div class="text-center mt-4">
 
     <small class="text-muted">
         🔒 {% trans "SafeShield encryption protects your information using advanced security technologies." %}
     </small>
 
 </div>
+
+</section>
+
+<script>
+function togglePassword(id) {
+    const input = document.getElementById(id);
+    input.type = input.type === "password" ? "text" : "password";
+}
+</script>
 
 {% endblock %}
