@@ -83,13 +83,68 @@ If you did not create this account, please ignore this email.
 
 def login_view(request):
     if request.user.is_authenticated:
-        return redirect("home")  # أو الصفحة الرئيسية عندك
+        return redirect("home")
 
     form = LoginForm(request, data=request.POST or None)
 
     if request.method == "POST":
         if form.is_valid():
             user = form.get_user()
+
+            # إنشاء رمز OTP
+            otp = user.profile.generate_otp()
+
+            from django.core.mail import send_mail
+
+            send_mail(
+                subject="SafeShield Login Verification",
+                message=f"""
+Your SafeShield verification code is:
+
+{otp}
+
+This code expires in 10 minutes.
+""",
+                from_email=settings.DEFAULT_FROM_EMAIL,
+                recipient_list=[user.email],
+                fail_silently=False,
+            )
+
+            # حفظ المستخدم مؤقتاً
+            request.session["otp_user_id"] = user.id
+
+            messages.success(
+                request,
+                _("A verification code has been sent to your email.")
+            )
+
+            return redirect("accounts:verify-otp")
+
+    return render(
+        request,
+        "accounts/login.html",
+        {
+            "form": form,
+        },
+    )
+def verify_otp_view(request):
+
+    user_id = request.session.get("otp_user_id")
+
+    if not user_id:
+        messages.error(
+            request,
+            _("Your session has expired. Please log in again.")
+        )
+        return redirect("accounts:login")
+
+    user = User.objects.get(id=user_id)
+
+    if request.method == "POST":
+
+        code = request.POST.get("otp", "").strip()
+
+        if user.profile.verify_otp(code):
 
             login(request, user)
 
@@ -103,39 +158,29 @@ def login_view(request):
                 user=user,
                 event_type="login_success",
                 title=_("Successful login"),
-                details=_("User logged in successfully."),
+                details=_("User logged in successfully with OTP."),
                 severity="info",
                 source="Authentication",
                 ip_address=get_client_ip(request),
             )
 
-            messages.success(request, _("Welcome back!"))
+            request.session.pop("otp_user_id", None)
 
-            return redirect("home")   # أو dashboard إذا كانت صفحتك الرئيسية هناك
-
-        else:
-            username = request.POST.get("username")
-
-            user = User.objects.filter(
-                Q(username__iexact=username) |
-                Q(email__iexact=username)
-            ).first()
-
-            if user and hasattr(user, "profile"):
-                user.profile.failed_login_count += 1
-                user.profile.save(update_fields=["failed_login_count"])
-
-            messages.error(
+            messages.success(
                 request,
-                _("Invalid username or password.")
+                _("Login successful.")
             )
+
+            return redirect("home")
+
+        messages.error(
+            request,
+            _("Invalid or expired verification code.")
+        )
 
     return render(
         request,
-        "accounts/login.html",
-        {
-            "form": form,
-        },
+        "accounts/verify_otp.html",
     )
 def logout_view(request):
 
@@ -552,6 +597,67 @@ def link_scanner(request):
     return render(
         request,
         'accounts/link_scanner.html'
+    )
+@login_required
+def verify_otp_view(request):
+
+    user_id = request.session.get("otp_user_id")
+
+    if not user_id:
+        messages.error(
+            request,
+            _("Verification session expired.")
+        )
+        return redirect("accounts:login")
+
+    user = User.objects.get(id=user_id)
+    profile = user.profile
+
+    if request.method == "POST":
+
+        code = request.POST.get("otp", "").strip()
+
+        if profile.verify_otp(code):
+
+            login(request, user)
+
+            profile.reset_login_tracking()
+            profile.last_login_ip = get_client_ip(request)
+            profile.last_login_at = timezone.now()
+            profile.save(
+                update_fields=[
+                    "last_login_ip",
+                    "last_login_at",
+                ]
+            )
+
+            SecurityLog.objects.create(
+                user=user,
+                event_type="login_success",
+                title=_("Successful login"),
+                details=_("User logged in successfully with OTP."),
+                severity="info",
+                source="Authentication",
+                ip_address=get_client_ip(request),
+            )
+
+            del request.session["otp_user_id"]
+
+            messages.success(
+                request,
+                _("Login completed successfully.")
+            )
+
+            return redirect("dashboard:home")
+
+        messages.error(
+            request,
+            _("Invalid or expired verification code.")
+        )
+
+    return render(
+        request,
+        "accounts/verify_otp.html",
     )
 @login_required
 def security_dashboard(request):
