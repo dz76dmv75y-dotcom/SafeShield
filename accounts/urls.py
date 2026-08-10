@@ -1,6 +1,6 @@
 from django.contrib.auth import views as auth_views
 from django.urls import path, reverse_lazy
-
+from django.http import HttpResponse
 from . import views
 
 
@@ -21,7 +21,7 @@ urlpatterns = [
         views.login_view,
         name='login'
     ),
-    path(
+ path(
     "verify-otp/",
     views.verify_otp_view,
     name="verify-otp",

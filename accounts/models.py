@@ -1,7 +1,7 @@
 import secrets
-import random
 from datetime import timedelta
 
+from django.contrib.auth.hashers import check_password, make_password
 from django.contrib.auth.models import User
 from django.db import models
 from django.db.models.signals import post_save
@@ -16,11 +16,7 @@ class Profile(models.Model):
         on_delete=models.CASCADE
     )
 
-    otp = models.CharField(
-        max_length=6,
-        blank=True,
-        null=True
-    )
+    
 
     
 
@@ -68,11 +64,29 @@ class Profile(models.Model):
     # ===== OTP =====
 
     otp_code = models.CharField(
-        max_length=6,
+        max_length=128,
         blank=True
     )
 
     otp_created_at = models.DateTimeField(
+        null=True,
+        blank=True
+    )
+
+    otp_attempts = models.PositiveSmallIntegerField(
+        default=0
+    )
+
+    otp_last_sent_at = models.DateTimeField(
+        null=True,
+        blank=True
+    )
+
+    otp_resend_count = models.PositiveSmallIntegerField(
+        default=0
+    )
+
+    otp_resend_window_started_at = models.DateTimeField(
         null=True,
         blank=True
     )
@@ -140,46 +154,103 @@ class Profile(models.Model):
                 "locked_until",
             ]
         )
-    def generate_otp(self):
-        self.otp_code = f"{random.randint(100000, 999999)}"
-        self.otp_created_at = timezone.now()
-
-        self.save(
-            update_fields=[
-                "otp_code",
-                "otp_created_at",
-            ]
-        )
-
-        return self.otp_code
-
-
-    def verify_otp(self, code):
-        if not self.otp_code:
-            return False
-
-        if self.otp_code != code:
-            return False
-
-        if not self.otp_created_at:
-            return False
-
-        if timezone.now() > self.otp_created_at + timedelta(minutes=10):
-            return False
-
+    def _clear_otp(self):
         self.otp_code = ""
         self.otp_created_at = None
-        self.email_verified = True
+        self.otp_attempts = 0
+        self.save(
+            update_fields=[
+                "otp_code",
+                "otp_created_at",
+                "otp_attempts",
+            ]
+        )
+
+    def _refresh_resend_window(self):
+        now = timezone.now()
+        if not self.otp_resend_window_started_at:
+            self.otp_resend_window_started_at = now
+            self.otp_resend_count = 0
+        elif now > self.otp_resend_window_started_at + timedelta(hours=1):
+            self.otp_resend_window_started_at = now
+            self.otp_resend_count = 0
+
+    def can_resend_otp(self):
+        now = timezone.now()
+
+        if self.otp_last_sent_at and now < self.otp_last_sent_at + timedelta(seconds=60):
+            return False
+
+        self._refresh_resend_window()
+        return self.otp_resend_count < 3
+
+    def record_otp_resend(self):
+        now = timezone.now()
+        self._refresh_resend_window()
+        self.otp_resend_count += 1
+        self.otp_last_sent_at = now
+        self.save(
+            update_fields=[
+                "otp_resend_count",
+                "otp_last_sent_at",
+                "otp_resend_window_started_at",
+            ]
+        )
+
+    def generate_otp(self):
+        otp = "".join(secrets.choice("0123456789") for _ in range(6))
+        self.otp_code = make_password(otp)
+        self.otp_created_at = timezone.now()
+        self.otp_attempts = 0
+        self.otp_last_sent_at = timezone.now()
+        self._refresh_resend_window()
 
         self.save(
             update_fields=[
                 "otp_code",
                 "otp_created_at",
-                "email_verified",
+                "otp_attempts",
+                "otp_last_sent_at",
+                "otp_resend_count",
+                "otp_resend_window_started_at",
             ]
         )
 
-        return True
+        return otp
+
+    def verify_otp(self, code):
+        if self.otp_attempts >= 5:
+            return False, "rate_limit"
+
+        if not self.otp_code or not self.otp_created_at:
+            return False, "invalid"
+
+        if timezone.now() > self.otp_created_at + timedelta(minutes=5):
+            self._clear_otp()
+            return False, "expired"
+
+        if not check_password(code, self.otp_code):
+            self.otp_attempts += 1
+            self.save(update_fields=["otp_attempts"])
+            if self.otp_attempts >= 5:
+                return False, "rate_limit"
+            return False, "invalid"
+
+        self.email_verified = True
+        self.otp_code = ""
+        self.otp_created_at = None
+        self.otp_attempts = 0
+
+        self.save(
+            update_fields=[
+                "email_verified",
+                "otp_code",
+                "otp_created_at",
+                "otp_attempts",
+            ]
+        )
+
+        return True, None
 
 class SecurityLog(models.Model):
 

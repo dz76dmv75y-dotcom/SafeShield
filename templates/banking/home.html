@@ -1,25 +1,76 @@
-{% extends "base.html" %}
+﻿{% extends "base.html" %}
+
+{% block title %}Banking Protection{% endblock %}
 
 {% block content %}
 
-<div class="container mt-5">
-
-    <div class="scp-card">
-
-        <h1>
-            🏦 حماية البنك
-        </h1>
-
-        <p>
-            حماية الحسابات البنكية ومراقبة الأنشطة المشبوهة.
-        </p>
-
-        <h3>
-            🟢 النظام فعال
-        </h3>
-
+<div class="row g-4 mt-4">
+  <div class="col-lg-5">
+    <div class="card border-0 shadow-lg p-4">
+      <h2 class="mb-3">Banking Protection</h2>
+      <p class="text-secondary">Add bank accounts for monitoring, track suspicious financial access, and receive fraud alerts without storing passwords.</p>
+      <form method="post">
+        {% csrf_token %}
+        <div class="mb-3">
+          <label class="form-label">Institution</label>
+          {{ form.institution }}
+        </div>
+        <div class="mb-3">
+          <label class="form-label">Account Name</label>
+          {{ form.account_name }}
+        </div>
+        <div class="mb-3">
+          <label class="form-label">Account ID / Last 4 digits</label>
+          {{ form.account_number }}
+        </div>
+        <div class="mb-3">
+          <label class="form-label">Notes</label>
+          {{ form.notes }}
+        </div>
+        <button type="submit" class="btn btn-success w-100">Add Bank Account</button>
+      </form>
     </div>
-
+  </div>
+  <div class="col-lg-7">
+    <div class="card border-0 shadow-lg p-4">
+      <div class="d-flex justify-content-between align-items-center mb-3">
+        <div>
+          <h4>Protected bank accounts</h4>
+          <p class="text-secondary mb-0">SafeShield tracks banking account entries and fraud alerts for your financial identity.</p>
+        </div>
+        <span class="badge bg-success">{{ banking_count }} protected</span>
+      </div>
+      <div class="table-responsive">
+        <table class="table table-dark table-striped align-middle">
+          <thead>
+            <tr><th>Institution</th><th>Account</th><th>Status</th><th>Notes</th></tr>
+          </thead>
+          <tbody>
+            {% for account in banking_accounts %}
+              <tr>
+                <td>{{ account.name }}</td>
+                <td>{{ account.username|default:'–' }}</td>
+                <td><span class="badge bg-success">{{ account.status }}</span></td>
+                <td>{{ account.notes|default:'No notes' }}</td>
+              </tr>
+            {% empty %}
+              <tr><td colspan="4" class="text-secondary">No banking accounts added yet.</td></tr>
+            {% endfor %}
+          </tbody>
+        </table>
+      </div>
+    </div>
+    <div class="card border-0 shadow-lg p-4 mt-4">
+      <h4 class="mb-3">Recent banking alerts</h4>
+      <ul class="list-unstyled text-secondary">
+        {% for alert in recent_alerts %}
+          <li class="border-bottom border-secondary-subtle py-2">{{ alert.title }} — {{ alert.details }}</li>
+        {% empty %}
+          <li>No recent banking alerts.</li>
+        {% endfor %}
+      </ul>
+    </div>
+  </div>
 </div>
 
 {% endblock %}

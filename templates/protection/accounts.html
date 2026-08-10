@@ -7,101 +7,25 @@
       <h2 class="mb-3">Account Protection Center</h2>
       <p class="text-secondary">Track protected email accounts, Apple ID and iCloud services, banking accounts, and social profiles without storing sensitive credentials.</p>
       <form method="post">
-    {% csrf_token %}
-
-    <h5 class="mb-3">Choose Platform</h5>
-
-    <div class="row g-3 mb-4">
-
-        <div class="col-4">
-            <label class="card text-center p-3 border platform-card">
-                <input type="radio" name="account_type" value="instagram" hidden>
-                <h2>📷</h2>
-                <strong>Instagram</strong>
-            </label>
+        {% csrf_token %}
+        <div class="mb-3">
+          <label class="form-label">Account Type</label>
+          {{ form.account_type }}
         </div>
-
-        <div class="col-4">
-            <label class="card text-center p-3 border platform-card">
-                <input type="radio" name="account_type" value="snapchat" hidden>
-                <h2>👻</h2>
-                <strong>Snapchat</strong>
-            </label>
+        <div class="mb-3">
+          <label class="form-label">Account Name</label>
+          {{ form.name }}
         </div>
-
-        <div class="col-4">
-            <label class="card text-center p-3 border platform-card">
-                <input type="radio" name="account_type" value="tiktok" hidden>
-                <h2>🎵</h2>
-                <strong>TikTok</strong>
-            </label>
+        <div class="mb-3">
+          <label class="form-label">Username / Email</label>
+          {{ form.username }}
         </div>
-
-        <div class="col-4">
-            <label class="card text-center p-3 border platform-card">
-                <input type="radio" name="account_type" value="gmail" hidden>
-                <h2>✉️</h2>
-                <strong>Gmail</strong>
-            </label>
+        <div class="mb-3">
+          <label class="form-label">Notes</label>
+          {{ form.notes }}
         </div>
-
-        <div class="col-4">
-            <label class="card text-center p-3 border platform-card">
-                <input type="radio" name="account_type" value="bank" hidden>
-                <h2>🏦</h2>
-                <strong>Bank</strong>
-            </label>
-        </div>
-
-        <div class="col-4">
-            <label class="card text-center p-3 border platform-card">
-                <input type="radio" name="account_type" value="apple" hidden>
-                <h2>🍎</h2>
-                <strong>Apple ID</strong>
-            </label>
-        </div>
-
-    </div>
-
-    <div class="mb-3">
-        <label class="form-label">Username or Email</label>
-        <input type="text"
-               name="username"
-               class="form-control"
-               placeholder="Enter username or email">
-    </div>
-<div class="mb-3">
-    <label class="form-label">Account Name</label>
-    {{ form.name }}
-</div>
-
-<div class="mb-3">
-    <label class="form-label">Notes</label>
-    {{ form.notes }}
-</div>
-    <button class="btn btn-success w-100">
-        Protect Account
-    </button>
-
-</form>
-
-<style>
-.platform-card{
-cursor:pointer;
-transition:.3s;
-border-radius:15px;
-}
-
-.platform-card:hover{
-transform:translateY(-4px);
-background:#198754;
-color:white;
-}
-
-.platform-card input:checked + *{
-color:white;
-}
-</style>
+        <button class="btn btn-success w-100">Protect Account</button>
+      </form>
     </div>
   </div>
   <div class="col-lg-7">
@@ -115,7 +39,7 @@ color:white;
           <tbody>
             {% for account in accounts %}
               <tr>
-                <td>{{ account.name }}<br><small class="text-secondary">{{ account.username }}</small></td>
+                <td>{{ account.name }}<br><small class="text-secondary">{{ account.username|default:'–' }}</small></td>
                 <td>{{ account.get_account_type_display }}</td>
                 <td><span class="badge bg-success">{{ account.status }}</span></td>
                 <td>{{ account.last_checked|date:'M d, Y' }}</td>

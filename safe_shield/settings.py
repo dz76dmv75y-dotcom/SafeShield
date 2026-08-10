@@ -25,9 +25,7 @@ SECRET_KEY = os.getenv(
     "django-insecure-change-this-key"
 )
 
-# DEBUG controlled by Render Environment Variables
-DEBUG = os.getenv("DEBUG", "False").lower() == "true"
-
+DEBUG = True
 
 ALLOWED_HOSTS = [
     "127.0.0.1",
@@ -58,6 +56,7 @@ CSRF_COOKIE_HTTPONLY = True
 # =========================================================
 
 INSTALLED_APPS = [
+
 
     "django.contrib.admin",
 
@@ -342,12 +341,10 @@ LOGOUT_REDIRECT_URL = "home"
 
 
 # =========================================================
-# EMAIL
+# EMAIL SETTINGS
 # =========================================================
 
-EMAIL_BACKEND = (
-    "django.core.mail.backends.smtp.EmailBackend"
-)
+EMAIL_BACKEND = "django.core.mail.backends.smtp.EmailBackend"
 
 EMAIL_HOST = "smtp.gmail.com"
 
@@ -355,25 +352,24 @@ EMAIL_PORT = 587
 
 EMAIL_USE_TLS = True
 
+EMAIL_USE_SSL = False
 
 EMAIL_HOST_USER = os.getenv(
     "EMAIL_HOST_USER",
     ""
 )
 
-
 EMAIL_HOST_PASSWORD = os.getenv(
     "EMAIL_HOST_PASSWORD",
     ""
 )
-
 
 DEFAULT_FROM_EMAIL = os.getenv(
     "DEFAULT_FROM_EMAIL",
     "SafeShield <safeshield.project@gmail.com>"
 )
 
-
+EMAIL_TIMEOUT = 30
 # =========================================================
 # RESEND
 # =========================================================

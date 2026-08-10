@@ -1,0 +1,152 @@
+{% extends 'base.html' %}
+{% load i18n %}
+
+{% block title %}{% trans "SafeShield Showcase" %}{% endblock %}
+
+{% block content %}
+<div class="container py-5">
+    <div class="showcase-shell">
+        <aside class="showcase-sidebar mb-4">
+            <div class="mb-5">
+                <div class="d-flex align-items-center gap-3 mb-4">
+                    <div class="scp-logo fs-2">🛡️</div>
+                    <div>
+                        <h4 class="mb-0">SafeShield</h4>
+                        <p class="text-secondary small mb-0">Cyber Defense Center</p>
+                    </div>
+                </div>
+                <nav>
+                    <a href="{% url 'dashboard:home' %}" class="sidebar-item">
+                        <span>Dashboard</span>
+                        <i class="bi bi-speedometer2"></i>
+                    </a>
+                    <a href="{% url 'accounts:security-dashboard' %}" class="sidebar-item">
+                        <span>{% trans "Account Protection" %}</span>
+                        <i class="bi bi-shield-lock"></i>
+                    </a>
+                    <a href="{% url 'scanner:scan' %}" class="sidebar-item">
+                        <span>{% trans "Website/Link Scanner" %}</span>
+                        <i class="bi bi-window-sidebar"></i>
+                    </a>
+                    <a href="{% url 'passwords:list' %}" class="sidebar-item">
+                        <span>{% trans "Password Manager" %}</span>
+                        <i class="bi bi-key"></i>
+                    </a>
+                    <a href="{% url 'notifications:list' %}" class="sidebar-item">
+                        <span>{% trans "Security Alerts" %}</span>
+                        <i class="bi bi-bell"></i>
+                    </a>
+                    <a href="{% url 'reports:home' %}" class="sidebar-item">
+                        <span>{% trans "Security Reports" %}</span>
+                        <i class="bi bi-file-earmark-text"></i>
+                    </a>
+                    <a href="{% url 'accounts:profile' %}" class="sidebar-item">
+                        <span>{% trans "Account Settings" %}</span>
+                        <i class="bi bi-gear"></i>
+                    </a>
+                    <a href="{% url 'accounts:logout' %}" class="sidebar-item">
+                        <span>{% trans "Logout" %}</span>
+                        <i class="bi bi-box-arrow-right"></i>
+                    </a>
+                </nav>
+            </div>
+        </aside>
+
+        <main class="showcase-main">
+            <div class="d-flex flex-column flex-md-row justify-content-between align-items-start gap-3 mb-4">
+                <div>
+                    <h2>{% trans "SafeShield Cybersecurity Showcase" %}</h2>
+                    <p class="text-secondary">{% trans "Explore the core features of SafeShield with realistic security insights for your portfolio." %}</p>
+                </div>
+                <div class="text-end">
+                    <span class="badge bg-success">{% trans "Active" %}</span>
+                </div>
+            </div>
+
+            <div class="row g-4 mb-4">
+                <div class="col-md-4">
+                    <div class="dashboard-stat">
+                        <h5>{% trans "Security Level" %}</h5>
+                        <div class="display-6 text-success">92%</div>
+                        <small class="text-secondary">{% trans "Strong protection across all assets." %}</small>
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <div class="dashboard-stat">
+                        <h5>{% trans "Account Security" %}</h5>
+                        <div class="display-6 text-info">Verified</div>
+                        <small class="text-secondary">{% trans "Email and login protection enabled." %}</small>
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <div class="dashboard-stat">
+                        <h5>{% trans "Scanned Websites" %}</h5>
+                        <div class="display-6 text-warning">{{ scanned_websites }}</div>
+                        <small class="text-secondary">{% trans "Verified link safety in the last 30 days." %}</small>
+                    </div>
+                </div>
+            </div>
+
+            <div class="row g-4 mb-4">
+                <div class="col-lg-8">
+                    <div class="card showcase-card p-4">
+                        <h4 class="mb-3">{% trans "Recent Security Activity" %}</h4>
+                        <div class="list-group list-group-flush">
+                            {% for event in recent_events %}
+                                <div class="list-group-item bg-transparent border-0 px-0 py-3 text-white">
+                                    <div class="d-flex justify-content-between">
+                                        <strong>{{ event.title }}</strong>
+                                        <span class="text-secondary small">{{ event.created_at|date:'Y-m-d H:i' }}</span>
+                                    </div>
+                                    <p class="mb-0 text-secondary">{{ event.details }}</p>
+                                </div>
+                            {% empty %}
+                                <div class="text-secondary">{% trans "No recent security activity yet." %}</div>
+                            {% endfor %}
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-4">
+                    <div class="card showcase-card p-4">
+                        <h4 class="mb-3">{% trans "Security Alerts" %}</h4>
+                        <p class="text-secondary mb-4">{% trans "Receive live alerts on suspicious activity and security events." %}</p>
+                        <div class="d-grid gap-2">
+                            <a href="{% url 'notifications:list' %}" class="btn btn-outline-light btn-lg">{% trans "View Alerts" %}</a>
+                            <a href="{% url 'accounts:security-dashboard' %}" class="btn btn-primary btn-lg">{% trans "Run Protection Scan" %}</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="row g-4">
+                <div class="col-lg-6">
+                    <div class="card showcase-card p-4">
+                        <h4 class="mb-3">{% trans "Main SafeShield Features" %}</h4>
+                        <ul class="text-secondary">
+                            <li>{% trans "Link scanning and phishing detection." %}</li>
+                            <li>{% trans "Password vault insights and health checks." %}</li>
+                            <li>{% trans "Real-time security alerts and reporting." %}</li>
+                            <li>{% trans "Account protection and secure session monitoring." %}</li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="col-lg-6">
+                    <div class="card showcase-card p-4">
+                        <h4 class="mb-3">{% trans "Recent Security Scans" %}</h4>
+                        <ul class="list-group list-group-flush text-secondary">
+                            {% for scan in recent_scans %}
+                                <li class="list-group-item bg-transparent border-0 px-0 py-3">
+                                    <strong>{{ scan.url }}</strong><br>
+                                    <small>{% trans "Scanned on" %} {{ scan.scanned_at|date:'Y-m-d H:i' }}</small>
+                                </li>
+                            {% empty %}
+                                <li class="text-secondary">{% trans "No recent scans available." %}</li>
+                            {% endfor %}
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </main>
+    </div>
+</div>
+{% endblock %}

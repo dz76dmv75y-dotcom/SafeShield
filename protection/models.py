@@ -6,9 +6,16 @@ class ProtectedAccount(models.Model):
     ACCOUNT_TYPES = [
         ('email', 'Email Account'),
         ('apple_id', 'Apple ID'),
-        ('icloud', 'iCloud'),
+        ('icloud', 'iCloud Account'),
         ('banking', 'Banking Account'),
-        ('social', 'Social Media'),
+        ('instagram', 'Instagram Account'),
+        ('snapchat', 'Snapchat Account'),
+        ('tiktok', 'TikTok Account'),
+        ('facebook', 'Facebook Account'),
+        ('gmail', 'Gmail Account'),
+        ('linkedin', 'LinkedIn Account'),
+        ('x', 'X Account'),
+        ('social', 'Social Media Account'),
     ]
     user = models.ForeignKey(User, on_delete=models.CASCADE, related_name='protected_accounts')
     account_type = models.CharField(max_length=20, choices=ACCOUNT_TYPES)

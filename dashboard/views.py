@@ -36,3 +36,24 @@ def home(request):
         'password_entries': passwords.count(),
     }
     return render(request, 'dashboard/home.html', context)
+
+
+@login_required
+def showcase(request):
+    scanned_websites = ScanHistory.objects.filter(user=request.user).count()
+    recent_scans = ScanHistory.objects.filter(user=request.user).order_by('-scanned_at')[:5]
+    recent_events = SecurityEvent.objects.filter(user=request.user).order_by('-created_at')[:5]
+    notifications = Notification.objects.filter(user=request.user).order_by('-created_at')[:5]
+    password_entries = PasswordEntry.objects.filter(user=request.user).count()
+
+    return render(
+        request,
+        'dashboard/showcase.html',
+        {
+            'scanned_websites': scanned_websites,
+            'recent_scans': recent_scans,
+            'recent_events': recent_events,
+            'notifications': notifications,
+            'password_entries': password_entries,
+        }
+    )
