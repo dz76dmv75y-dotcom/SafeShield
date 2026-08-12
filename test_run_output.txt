@@ -1,0 +1,254 @@
+Creating test database for alias 'default'...
+..EE....F..
+======================================================================
+ERROR: test_language_switcher_sets_arabic_language_cookie (accounts.tests.RegistrationAndI18nTests.test_language_switcher_sets_arabic_language_cookie)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "c:\Users\teytd\OneDrive\”ÿÕ «·„ﬂ »\bug-tracker\accounts\tests.py", line 53, in test_language_switcher_sets_arabic_language_cookie
+    response = self.client.post('/i18n/setlang/', {'language': 'ar', 'next': '/'}, follow=True)
+  File "c:\Users\teytd\OneDrive\”ÿÕ «·„ﬂ »\bug-tracker\.venv\Lib\site-packages\django\test\client.py", line 1166, in post
+    response = self._handle_redirects(
+        response,
+    ...<4 lines>...
+        **extra,
+    )
+  File "c:\Users\teytd\OneDrive\”ÿÕ «·„ﬂ »\bug-tracker\.venv\Lib\site-packages\django\test\client.py", line 1387, in _handle_redirects
+    response = self._follow_redirect(
+        response,
+    ...<4 lines>...
+        **extra,
+    )
+  File "c:\Users\teytd\OneDrive\”ÿÕ «·„ﬂ »\bug-tracker\.venv\Lib\site-packages\django\test\client.py", line 1005, in _follow_redirect
+    return request_method(
+        path,
+    ...<5 lines>...
+        **extra,
+    )
+  File "c:\Users\teytd\OneDrive\”ÿÕ «·„ﬂ »\bug-tracker\.venv\Lib\site-packages\django\test\client.py", line 1127, in get
+    response = super().get(
+        path,
+    ...<4 lines>...
+        **extra,
+    )
+  File "c:\Users\teytd\OneDrive\”ÿÕ «·„ﬂ »\bug-tracker\.venv\Lib\site-packages\django\test\client.py", line 475, in get
+    return self.generic(
+           ~~~~~~~~~~~~^
+        "GET",
+        ^^^^^^
+    ...<4 lines>...
+        **extra,
+        ^^^^^^^^
+    )
+    ^
+  File "c:\Users\teytd\OneDrive\”ÿÕ «·„ﬂ »\bug-tracker\.venv\Lib\site-packages\django\test\client.py", line 671, in generic
+    return self.request(**r)
+           ~~~~~~~~~~~~^^^^^
+  File "c:\Users\teytd\OneDrive\”ÿÕ «·„ﬂ »\bug-tracker\.venv\Lib\site-packages\django\test\client.py", line 1090, in request
+    self.check_exception(response)
+    ~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^
+  File "c:\Users\teytd\OneDrive\”ÿÕ «·„ﬂ »\bug-tracker\.venv\Lib\site-packages\django\test\client.py", line 805, in check_exception
+    raise exc_value
+  File "c:\Users\teytd\OneDrive\”ÿÕ «·„ﬂ »\bug-tracker\.venv\Lib\site-packages\django\core\handlers\exception.py", line 55, in inner
+    response = get_response(request)
+  File "c:\Users\teytd\OneDrive\”ÿÕ «·„ﬂ »\bug-tracker\.venv\Lib\site-packages\django\core\handlers\base.py", line 221, in _get_response
+    response = response.render()
+  File "c:\Users\teytd\OneDrive\”ÿÕ «·„ﬂ »\bug-tracker\.venv\Lib\site-packages\django\template\response.py", line 114, in render
+    self.content = self.rendered_content
+                   ^^^^^^^^^^^^^^^^^^^^^
+  File "c:\Users\teytd\OneDrive\”ÿÕ «·„ﬂ »\bug-tracker\.venv\Lib\site-packages\django\template\response.py", line 92, in rendered_content
+    return template.render(context, self._request)
+           ~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^
+  File "c:\Users\teytd\OneDrive\”ÿÕ «·„ﬂ »\bug-tracker\.venv\Lib\site-packages\django\template\backends\django.py", line 107, in render
+    return self.template.render(context)
+           ~~~~~~~~~~~~~~~~~~~~^^^^^^^^^
+  File "c:\Users\teytd\OneDrive\”ÿÕ «·„ﬂ »\bug-tracker\.venv\Lib\site-packages\django\template\base.py", line 174, in render
+    return self._render(context)
+           ~~~~~~~~~~~~^^^^^^^^^
+  File "c:\Users\teytd\OneDrive\”ÿÕ «·„ﬂ »\bug-tracker\.venv\Lib\site-packages\django\test\utils.py", line 114, in instrumented_test_render
+    return self.nodelist.render(context)
+           ~~~~~~~~~~~~~~~~~~~~^^^^^^^^^
+  File "c:\Users\teytd\OneDrive\”ÿÕ «·„ﬂ »\bug-tracker\.venv\Lib\site-packages\django\template\base.py", line 1091, in render
+    return SafeString("".join([node.render_annotated(context) for node in self]))
+                               ~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^
+  File "c:\Users\teytd\OneDrive\”ÿÕ «·„ﬂ »\bug-tracker\.venv\Lib\site-packages\django\template\base.py", line 1052, in render_annotated
+    return self.render(context)
+           ~~~~~~~~~~~^^^^^^^^^
+  File "c:\Users\teytd\OneDrive\”ÿÕ «·„ﬂ »\bug-tracker\.venv\Lib\site-packages\django\template\loader_tags.py", line 160, in render
+    return compiled_parent._render(context)
+           ~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^
+  File "c:\Users\teytd\OneDrive\”ÿÕ «·„ﬂ »\bug-tracker\.venv\Lib\site-packages\django\test\utils.py", line 114, in instrumented_test_render
+    return self.nodelist.render(context)
+           ~~~~~~~~~~~~~~~~~~~~^^^^^^^^^
+  File "c:\Users\teytd\OneDrive\”ÿÕ «·„ﬂ »\bug-tracker\.venv\Lib\site-packages\django\template\base.py", line 1091, in render
+    return SafeString("".join([node.render_annotated(context) for node in self]))
+                               ~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^
+  File "c:\Users\teytd\OneDrive\”ÿÕ «·„ﬂ »\bug-tracker\.venv\Lib\site-packages\django\template\base.py", line 1052, in render_annotated
+    return self.render(context)
+           ~~~~~~~~~~~^^^^^^^^^
+  File "c:\Users\teytd\OneDrive\”ÿÕ «·„ﬂ »\bug-tracker\.venv\Lib\site-packages\django\templatetags\static.py", line 116, in render
+    url = self.url(context)
+  File "c:\Users\teytd\OneDrive\”ÿÕ «·„ﬂ »\bug-tracker\.venv\Lib\site-packages\django\templatetags\static.py", line 113, in url
+    return self.handle_simple(path)
+           ~~~~~~~~~~~~~~~~~~^^^^^^
+  File "c:\Users\teytd\OneDrive\”ÿÕ «·„ﬂ »\bug-tracker\.venv\Lib\site-packages\django\templatetags\static.py", line 129, in handle_simple
+    return staticfiles_storage.url(path)
+           ~~~~~~~~~~~~~~~~~~~~~~~^^^^^^
+  File "c:\Users\teytd\OneDrive\”ÿÕ «·„ﬂ »\bug-tracker\.venv\Lib\site-packages\django\contrib\staticfiles\storage.py", line 205, in url
+    return self._url(self.stored_name, name, force)
+           ~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "c:\Users\teytd\OneDrive\”ÿÕ «·„ﬂ »\bug-tracker\.venv\Lib\site-packages\django\contrib\staticfiles\storage.py", line 184, in _url
+    hashed_name = hashed_name_func(*args)
+  File "c:\Users\teytd\OneDrive\”ÿÕ «·„ﬂ »\bug-tracker\.venv\Lib\site-packages\django\contrib\staticfiles\storage.py", line 524, in stored_name
+    raise ValueError(
+        "Missing staticfiles manifest entry for '%s'" % clean_name
+    )
+ValueError: Missing staticfiles manifest entry for 'images/safeshield-icon.png'
+
+======================================================================
+ERROR: test_user_can_register_and_login_with_hashed_password (accounts.tests.RegistrationAndI18nTests.test_user_can_register_and_login_with_hashed_password)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "c:\Users\teytd\OneDrive\”ÿÕ «·„ﬂ »\bug-tracker\accounts\views.py", line 36, in register_view
+    send_email_message(
+    ~~~~~~~~~~~~~~~~~~^
+        subject=_("Your SafeShield verification code"),
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+        body=f"SafeShield OTP Code: {otp}\n\nThis code expires in 5 minutes.",
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+        recipient_list=[user.email],
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    )
+    ^
+  File "c:\Users\teytd\OneDrive\”ÿÕ «·„ﬂ »\bug-tracker\accounts\utils.py", line 37, in send_email_message
+    response = resend.Emails.send(message)
+  File "c:\Users\teytd\OneDrive\”ÿÕ «·„ﬂ »\bug-tracker\.venv\Lib\site-packages\resend\emails\_emails.py", line 286, in send
+    ).perform_with_content()
+      ~~~~~~~~~~~~~~~~~~~~^^
+  File "c:\Users\teytd\OneDrive\”ÿÕ «·„ﬂ »\bug-tracker\.venv\Lib\site-packages\resend\request.py", line 53, in perform_with_content
+    resp = self.perform()
+  File "c:\Users\teytd\OneDrive\”ÿÕ «·„ﬂ »\bug-tracker\.venv\Lib\site-packages\resend\request.py", line 41, in perform
+    raise_for_code_and_type(
+    ~~~~~~~~~~~~~~~~~~~~~~~^
+        code=data.get("statusCode") or 500,
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    ...<2 lines>...
+        headers=self._response_headers,
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    )
+    ^
+  File "c:\Users\teytd\OneDrive\”ÿÕ «·„ﬂ »\bug-tracker\.venv\Lib\site-packages\resend\exceptions.py", line 266, in raise_for_code_and_type
+    raise error_from_list(
+    ...<4 lines>...
+    )
+resend.exceptions.ValidationError: Invalid `to` field. Please use our testing email address instead of domains like `example.com`. See our documentation for more information.
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "c:\Users\teytd\OneDrive\”ÿÕ «·„ﬂ »\bug-tracker\accounts\tests.py", line 33, in test_user_can_register_and_login_with_hashed_password
+    response = self.client.post(reverse('accounts:register'), {
+        'username': 'newuser',
+    ...<2 lines>...
+        'password2': 'StrongPass123!',
+    })
+  File "c:\Users\teytd\OneDrive\”ÿÕ «·„ﬂ »\bug-tracker\.venv\Lib\site-packages\django\test\client.py", line 1156, in post
+    response = super().post(
+        path,
+    ...<5 lines>...
+        **extra,
+    )
+  File "c:\Users\teytd\OneDrive\”ÿÕ «·„ﬂ »\bug-tracker\.venv\Lib\site-packages\django\test\client.py", line 499, in post
+    return self.generic(
+           ~~~~~~~~~~~~^
+        "POST",
+        ^^^^^^^
+    ...<6 lines>...
+        **extra,
+        ^^^^^^^^
+    )
+    ^
+  File "c:\Users\teytd\OneDrive\”ÿÕ «·„ﬂ »\bug-tracker\.venv\Lib\site-packages\django\test\client.py", line 671, in generic
+    return self.request(**r)
+           ~~~~~~~~~~~~^^^^^
+  File "c:\Users\teytd\OneDrive\”ÿÕ «·„ﬂ »\bug-tracker\.venv\Lib\site-packages\django\test\client.py", line 1090, in request
+    self.check_exception(response)
+    ~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^
+  File "c:\Users\teytd\OneDrive\”ÿÕ «·„ﬂ »\bug-tracker\.venv\Lib\site-packages\django\test\client.py", line 805, in check_exception
+    raise exc_value
+  File "c:\Users\teytd\OneDrive\”ÿÕ «·„ﬂ »\bug-tracker\.venv\Lib\site-packages\django\core\handlers\exception.py", line 55, in inner
+    response = get_response(request)
+  File "c:\Users\teytd\OneDrive\”ÿÕ «·„ﬂ »\bug-tracker\.venv\Lib\site-packages\django\core\handlers\base.py", line 198, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "c:\Users\teytd\OneDrive\”ÿÕ «·„ﬂ »\bug-tracker\accounts\views.py", line 49, in register_view
+    return render(
+        request,
+        "accounts/register.html",
+        {"form": form},
+    )
+  File "c:\Users\teytd\OneDrive\”ÿÕ «·„ﬂ »\bug-tracker\.venv\Lib\site-packages\django\shortcuts.py", line 25, in render
+    content = loader.render_to_string(template_name, context, request, using=using)
+  File "c:\Users\teytd\OneDrive\”ÿÕ «·„ﬂ »\bug-tracker\.venv\Lib\site-packages\django\template\loader.py", line 62, in render_to_string
+    return template.render(context, request)
+           ~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^
+  File "c:\Users\teytd\OneDrive\”ÿÕ «·„ﬂ »\bug-tracker\.venv\Lib\site-packages\django\template\backends\django.py", line 107, in render
+    return self.template.render(context)
+           ~~~~~~~~~~~~~~~~~~~~^^^^^^^^^
+  File "c:\Users\teytd\OneDrive\”ÿÕ «·„ﬂ »\bug-tracker\.venv\Lib\site-packages\django\template\base.py", line 174, in render
+    return self._render(context)
+           ~~~~~~~~~~~~^^^^^^^^^
+  File "c:\Users\teytd\OneDrive\”ÿÕ «·„ﬂ »\bug-tracker\.venv\Lib\site-packages\django\test\utils.py", line 114, in instrumented_test_render
+    return self.nodelist.render(context)
+           ~~~~~~~~~~~~~~~~~~~~^^^^^^^^^
+  File "c:\Users\teytd\OneDrive\”ÿÕ «·„ﬂ »\bug-tracker\.venv\Lib\site-packages\django\template\base.py", line 1091, in render
+    return SafeString("".join([node.render_annotated(context) for node in self]))
+                               ~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^
+  File "c:\Users\teytd\OneDrive\”ÿÕ «·„ﬂ »\bug-tracker\.venv\Lib\site-packages\django\template\base.py", line 1052, in render_annotated
+    return self.render(context)
+           ~~~~~~~~~~~^^^^^^^^^
+  File "c:\Users\teytd\OneDrive\”ÿÕ «·„ﬂ »\bug-tracker\.venv\Lib\site-packages\django\template\loader_tags.py", line 160, in render
+    return compiled_parent._render(context)
+           ~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^
+  File "c:\Users\teytd\OneDrive\”ÿÕ «·„ﬂ »\bug-tracker\.venv\Lib\site-packages\django\test\utils.py", line 114, in instrumented_test_render
+    return self.nodelist.render(context)
+           ~~~~~~~~~~~~~~~~~~~~^^^^^^^^^
+  File "c:\Users\teytd\OneDrive\”ÿÕ «·„ﬂ »\bug-tracker\.venv\Lib\site-packages\django\template\base.py", line 1091, in render
+    return SafeString("".join([node.render_annotated(context) for node in self]))
+                               ~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^
+  File "c:\Users\teytd\OneDrive\”ÿÕ «·„ﬂ »\bug-tracker\.venv\Lib\site-packages\django\template\base.py", line 1052, in render_annotated
+    return self.render(context)
+           ~~~~~~~~~~~^^^^^^^^^
+  File "c:\Users\teytd\OneDrive\”ÿÕ «·„ﬂ »\bug-tracker\.venv\Lib\site-packages\django\templatetags\static.py", line 116, in render
+    url = self.url(context)
+  File "c:\Users\teytd\OneDrive\”ÿÕ «·„ﬂ »\bug-tracker\.venv\Lib\site-packages\django\templatetags\static.py", line 113, in url
+    return self.handle_simple(path)
+           ~~~~~~~~~~~~~~~~~~^^^^^^
+  File "c:\Users\teytd\OneDrive\”ÿÕ «·„ﬂ »\bug-tracker\.venv\Lib\site-packages\django\templatetags\static.py", line 129, in handle_simple
+    return staticfiles_storage.url(path)
+           ~~~~~~~~~~~~~~~~~~~~~~~^^^^^^
+  File "c:\Users\teytd\OneDrive\”ÿÕ «·„ﬂ »\bug-tracker\.venv\Lib\site-packages\django\contrib\staticfiles\storage.py", line 205, in url
+    return self._url(self.stored_name, name, force)
+           ~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "c:\Users\teytd\OneDrive\”ÿÕ «·„ﬂ »\bug-tracker\.venv\Lib\site-packages\django\contrib\staticfiles\storage.py", line 184, in _url
+    hashed_name = hashed_name_func(*args)
+  File "c:\Users\teytd\OneDrive\”ÿÕ «·„ﬂ »\bug-tracker\.venv\Lib\site-packages\django\contrib\staticfiles\storage.py", line 524, in stored_name
+    raise ValueError(
+        "Missing staticfiles manifest entry for '%s'" % clean_name
+    )
+ValueError: Missing staticfiles manifest entry for 'images/safeshield-icon.png'
+
+======================================================================
+FAIL: test_phishing_like_url_is_marked_high_risk (scanner.tests.ScannerAnalysisTests.test_phishing_like_url_is_marked_high_risk)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "c:\Users\teytd\OneDrive\”ÿÕ «·„ﬂ »\bug-tracker\scanner\tests.py", line 20, in test_phishing_like_url_is_marked_high_risk
+    self.assertIn('High', result['risk_level'])
+    ~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+AssertionError: 'High' not found in 'Medium'
+
+----------------------------------------------------------------------
+Ran 11 tests in 25.496s
+
+FAILED (failures=1, errors=2)
+Destroying test database for alias 'default'...
+Found 11 test(s).
+System check identified no issues (0 silenced).

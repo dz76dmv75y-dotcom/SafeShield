@@ -1,0 +1,5 @@
+SEND_OK_SMTP
+VERIFY_OK
+CLEANUP_OK
+System check identified no issues (0 silenced).
+MANAGE_CHECK_OK

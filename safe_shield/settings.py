@@ -25,7 +25,7 @@ SECRET_KEY = os.getenv(
     "django-insecure-change-this-key"
 )
 
-DEBUG = True
+DEBUG = os.getenv("DEBUG", "false").strip().lower() in ("true", "1", "yes")
 
 ALLOWED_HOSTS = [
     "127.0.0.1",
@@ -47,8 +47,12 @@ X_FRAME_OPTIONS = "DENY"
 SESSION_COOKIE_HTTPONLY = True
 
 CSRF_COOKIE_HTTPONLY = True
+CSRF_COOKIE_SECURE = not DEBUG
+SESSION_COOKIE_SECURE = not DEBUG
 
-    
+CSRF_TRUSTED_ORIGINS = [
+    "https://safeshield-v1db.onrender.com",
+]
 
 
 # =========================================================
